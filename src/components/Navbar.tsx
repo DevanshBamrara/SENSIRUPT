@@ -29,7 +29,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenConsultation }) => {
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
           ? 'bg-white/90 backdrop-blur-xl border-b border-sky-200/80 py-3.5 shadow-sm'
-          : 'bg-transparent border-b border-transparent py-6'
+          : 'bg-transparent border-b border-transparent py-5'
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-12 flex items-center justify-between">
@@ -43,28 +43,27 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenConsultation }) => {
           </a>
         </div>
 
-        {/* Center: Perfectly Centered Navigation Links */}
+        {/* Center: Navigation Links */}
         <nav className="hidden md:flex items-center justify-center gap-9 flex-shrink-0">
           {navLinks.map((link) => (
             <a
               key={link.name}
               href={link.href}
-              className="text-sm font-bold uppercase tracking-wider text-[#1A1A1A]/85 hover:text-[#0284C7] transition-all duration-200 relative group py-1"
+              className="text-sm font-bold uppercase tracking-wider text-[#1A1A1A] hover:text-[#0284C7] transition-colors duration-200 py-1"
             >
-              <span>{link.name}</span>
-              <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-[#0284C7] transition-all duration-200 group-hover:w-full rounded-full" />
+              {link.name}
             </a>
           ))}
         </nav>
 
-        {/* Right: High-End Legal Terminology Action Button ("Initiate Advisory" / "Request Briefing") */}
+        {/* Right: Book Briefing Button on the Right */}
         <div className="hidden md:flex items-center justify-end flex-1">
           <button
-            onClick={() => onOpenConsultation("Executive Advisory Briefing")}
+            onClick={() => onOpenConsultation("Schedule Briefing")}
             className="bg-white/85 hover:bg-white text-[#1A1A1A] hover:text-[#0284C7] border border-white/90 shadow-sm hover:shadow-md rounded-full px-6 py-2.5 text-xs font-bold uppercase tracking-wider flex items-center gap-2 transition-all hover:scale-105 active:scale-95 backdrop-blur-md"
           >
-            <span>Request Briefing</span>
-            <ArrowRight className="w-3.5 h-3.5 text-[#0284C7] transition-transform group-hover:translate-x-0.5" />
+            <span>Book Briefing</span>
+            <ArrowRight className="w-3.5 h-3.5 text-[#0284C7]" />
           </button>
         </div>
 
@@ -97,11 +96,11 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenConsultation }) => {
             <button
               onClick={() => {
                 setMobileMenuOpen(false);
-                onOpenConsultation("Executive Advisory Briefing");
+                onOpenConsultation("Schedule Briefing");
               }}
               className="w-full bg-[#1A1A1A] hover:bg-black text-white rounded-full py-3.5 text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2 shadow-lg"
             >
-              <span>Request Briefing</span>
+              <span>Book Briefing</span>
               <ArrowRight className="w-4 h-4 text-[#C5A059]" />
             </button>
           </div>

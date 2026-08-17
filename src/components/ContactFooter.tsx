@@ -27,7 +27,7 @@ export const ContactFooter: React.FC<ContactFooterProps> = ({ onOpenConsultation
                 onClick={() => onOpenConsultation("General Advisory Briefing")}
                 className="bg-[#1A1A1A] hover:bg-black text-white px-9 py-4 rounded-full text-xs font-bold uppercase tracking-wider flex items-center gap-3 transition-all hover:scale-105 active:scale-95 shadow-xl"
               >
-                <span>Request Briefing</span>
+                <span>Book Briefing</span>
                 <ArrowRight className="w-4 h-4 text-[#C5A059]" />
               </button>
             </div>

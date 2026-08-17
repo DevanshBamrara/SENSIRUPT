@@ -74,11 +74,18 @@ export const Hero: React.FC<HeroProps> = ({ onOpenConsultation }) => {
           className="lg:col-span-5 relative flex items-center justify-center lg:justify-end order-2 mt-4 lg:mt-0"
         >
           <div className="relative w-full max-w-[280px] sm:max-w-[360px] lg:max-w-[440px] aspect-[2/3] flex items-center justify-center">
-            <img
-              src="/lady-justice-cutout.png"
-              alt="Lady Justice Artwork - Sensirupt"
-              className="w-full h-full object-contain filter drop-shadow-[0_20px_35px_rgba(8,35,70,0.22)] animate-float-gentle"
-            />
+            <picture className="w-full h-full flex items-center justify-center">
+              <source srcSet="/lady-justice-cutout.webp" type="image/webp" />
+              <img
+                src="/lady-justice-cutout.png"
+                alt="Lady Justice Artwork - Sensirupt"
+                loading="eager"
+                decoding="async"
+                // @ts-expect-error - fetchpriority is standard HTML5 attribute
+                fetchpriority="high"
+                className="w-full h-full object-contain filter drop-shadow-[0_20px_35px_rgba(8,35,70,0.22)] animate-float-gentle"
+              />
+            </picture>
           </div>
         </motion.div>
 

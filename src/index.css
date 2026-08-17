@@ -42,7 +42,8 @@
   }
 
   .sky-hero-backdrop {
-    background-image: url('/sky-clouds-user.jpg');
+    background-color: #CAE9FF;
+    background-image: url('/sky-clouds-user.webp'), linear-gradient(135deg, #F0F8FF 0%, #CAE9FF 50%, #9ACEFF 100%);
     background-position: center right;
     background-size: cover;
     background-repeat: no-repeat;

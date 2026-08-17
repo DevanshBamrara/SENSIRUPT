@@ -1,0 +1,87 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 210 50% 98%;
+    --foreground: 220 50% 10%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 220 50% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 50% 10%;
+
+    --primary: 220 50% 10%;
+    --primary-foreground: 210 50% 98%;
+
+    --secondary: 210 40% 94%;
+    --secondary-foreground: 220 50% 10%;
+
+    --muted: 215 25% 45%;
+    --muted-foreground: 215 25% 45%;
+
+    --accent: 200 90% 45%;
+    --accent-foreground: 220 50% 10%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 210 30% 90%;
+    --input: 210 30% 90%;
+    --ring: 200 90% 45%;
+
+    --radius: 0.75rem;
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: 'Fraunces', 'Playfair Display', 'Cormorant Garamond', Georgia, serif;
+  }
+
+  .sky-hero-backdrop {
+    background-image: url('/sky-clouds-user.jpg');
+    background-position: center right;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  .sky-card {
+    background: #FFFFFF;
+    border: 1px solid rgba(2, 132, 199, 0.12);
+    box-shadow: 0 10px 30px -10px rgba(10, 30, 60, 0.05);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .sky-card:hover {
+    border-color: rgba(2, 132, 199, 0.35);
+    box-shadow: 0 20px 40px -10px rgba(2, 132, 199, 0.12);
+    transform: translateY(-3px);
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 7px;
+}
+::-webkit-scrollbar-track {
+  background: #F0F7FD;
+}
+::-webkit-scrollbar-thumb {
+  background: #BCE0FD;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #0284C7;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

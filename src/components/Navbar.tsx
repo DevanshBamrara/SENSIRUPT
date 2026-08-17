@@ -33,42 +33,38 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenConsultation }) => {
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-12 flex items-center justify-between">
-        {/* Brand Logo (No Dot, Completely Transparent Background in Hero) */}
-        <a href="#" className="flex items-center group">
-          <span className="font-sans font-black text-2xl tracking-tighter text-[#1A1A1A] group-hover:text-[#0284C7] transition-colors">
-            SENSIRUPT
-          </span>
-        </a>
+        
+        {/* Left: Brand Logo */}
+        <div className="flex-1 flex items-center">
+          <a href="#" className="inline-block group">
+            <span className="font-sans font-black text-2xl tracking-tighter text-[#1A1A1A] group-hover:text-[#0284C7] transition-colors duration-200">
+              SENSIRUPT
+            </span>
+          </a>
+        </div>
 
-        {/* Desktop Navigation Links */}
-        <nav className="hidden md:flex items-center gap-10">
+        {/* Center: Perfectly Centered Navigation Links */}
+        <nav className="hidden md:flex items-center justify-center gap-9 flex-shrink-0">
           {navLinks.map((link) => (
             <a
               key={link.name}
               href={link.href}
-              className="text-sm font-bold uppercase tracking-wider text-[#1A1A1A] hover:text-[#0284C7] transition-colors"
+              className="text-sm font-bold uppercase tracking-wider text-[#1A1A1A]/85 hover:text-[#0284C7] transition-all duration-200 relative group py-1"
             >
-              {link.name}
+              <span>{link.name}</span>
+              <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-[#0284C7] transition-all duration-200 group-hover:w-full rounded-full" />
             </a>
           ))}
         </nav>
 
-        {/* Desktop Action Buttons */}
-        <div className="hidden md:flex items-center gap-6">
+        {/* Right: High-End Legal Terminology Action Button ("Initiate Advisory" / "Request Briefing") */}
+        <div className="hidden md:flex items-center justify-end flex-1">
           <button
-            onClick={() => onOpenConsultation("Direct Access Inquiry")}
-            className="text-xs font-bold uppercase tracking-widest text-[#1A1A1A] hover:text-[#0284C7] transition-colors"
+            onClick={() => onOpenConsultation("Executive Advisory Briefing")}
+            className="bg-white/85 hover:bg-white text-[#1A1A1A] hover:text-[#0284C7] border border-white/90 shadow-sm hover:shadow-md rounded-full px-6 py-2.5 text-xs font-bold uppercase tracking-wider flex items-center gap-2 transition-all hover:scale-105 active:scale-95 backdrop-blur-md"
           >
-            Direct Access
-          </button>
-          
-          {/* Transparent / White Glass Pill Button for High Contrast */}
-          <button
-            onClick={() => onOpenConsultation("Schedule Briefing")}
-            className="bg-white/85 hover:bg-white text-[#1A1A1A] border border-white/90 shadow-sm hover:shadow-md rounded-full px-6 py-2.5 text-xs font-bold uppercase tracking-wider flex items-center gap-2 transition-all hover:scale-105 active:scale-95 backdrop-blur-md"
-          >
-            <span>Book Briefing</span>
-            <ArrowRight className="w-3.5 h-3.5 text-[#0284C7]" />
+            <span>Request Briefing</span>
+            <ArrowRight className="w-3.5 h-3.5 text-[#0284C7] transition-transform group-hover:translate-x-0.5" />
           </button>
         </div>
 
@@ -91,30 +87,21 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenConsultation }) => {
                 key={link.name}
                 href={link.href}
                 onClick={() => setMobileMenuOpen(false)}
-                className="text-base font-bold uppercase tracking-wider text-[#1A1A1A] py-2 border-b border-sky-100 hover:text-[#0284C7]"
+                className="text-base font-bold uppercase tracking-wider text-[#1A1A1A] py-2 border-b border-sky-100 hover:text-[#0284C7] transition-colors"
               >
                 {link.name}
               </a>
             ))}
           </nav>
-          <div className="pt-2 flex flex-col gap-3">
+          <div className="pt-2">
             <button
               onClick={() => {
                 setMobileMenuOpen(false);
-                onOpenConsultation("Direct Access Inquiry");
+                onOpenConsultation("Executive Advisory Briefing");
               }}
-              className="w-full text-center py-2.5 text-xs font-bold uppercase tracking-widest text-[#1A1A1A]"
+              className="w-full bg-[#1A1A1A] hover:bg-black text-white rounded-full py-3.5 text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2 shadow-lg"
             >
-              Direct Access
-            </button>
-            <button
-              onClick={() => {
-                setMobileMenuOpen(false);
-                onOpenConsultation("Schedule Briefing");
-              }}
-              className="w-full bg-[#1A1A1A] text-white rounded-full py-3.5 text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2 shadow-lg"
-            >
-              <span>Book Briefing</span>
+              <span>Request Briefing</span>
               <ArrowRight className="w-4 h-4 text-[#C5A059]" />
             </button>
           </div>

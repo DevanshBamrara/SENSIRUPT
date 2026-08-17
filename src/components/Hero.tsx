@@ -58,8 +58,8 @@ export const Hero: React.FC<HeroProps> = ({ onOpenConsultation }) => {
                 type="submit"
                 className="absolute right-1.5 top-1.5 bottom-1.5 bg-white/95 hover:bg-white text-[#1A1A1A] border border-white px-4 sm:px-6 rounded-full text-xs font-bold uppercase tracking-wider flex items-center gap-2 transition-all duration-200 hover:scale-[1.03] active:scale-95 shadow-md shrink-0"
               >
-                <span className="hidden sm:inline text-[#1A1A1A]">Book Briefing</span>
-                <span className="sm:hidden text-[#1A1A1A]">Book</span>
+                <span className="hidden sm:inline text-[#1A1A1A]">Request Briefing</span>
+                <span className="sm:hidden text-[#1A1A1A]">Request</span>
                 <ArrowRight className="w-3.5 h-3.5 text-[#0284C7]" />
               </button>
             </form>

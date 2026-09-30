@@ -1,73 +1,145 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { ShieldAlert, TrendingUp, FileCode2, Lock } from 'lucide-react';
+import { Shield, GitCommit, FileCheck, LockKeyhole } from 'lucide-react';
+import { ExpertiseDrawer, ExpertiseDetail } from './ExpertiseDrawer';
 
 interface ExpertiseProps {
   onOpenConsultation: (topic?: string) => void;
 }
 
 export const Expertise: React.FC<ExpertiseProps> = ({ onOpenConsultation }) => {
-  const items = [
+  const [selectedItem, setSelectedItem] = useState<ExpertiseDetail | null>(null);
+
+  const practiceItems: ExpertiseDetail[] = [
     {
-      icon: ShieldAlert,
-      title: "IP Strategy & Valuation",
-      desc: "Monetizing patents and intangible assets.",
+      id: 'tech-law',
+      title: 'Tech Law & Transactions',
+      description: 'Structuring high-stakes, technology conveyance, cross-licensing alliances and venture scaling across borders.',
+      tags: [
+        'Licensing & cross-licensing',
+        'Technology transfer',
+        'Joint development & co-ownership',
+      ],
+      fullScope: [
+        'Technology Transactions',
+        'Technology Law (AI governance, API licensing, SaaS enterprise terms, vendor contracts)',
+        'Structuring High-Stakes Alliances (research consortia, cross-border joint ventures)',
+      ],
     },
     {
-      icon: TrendingUp,
-      title: "Tech Law & Transactions",
-      desc: "Structuring high-stakes IP-centric alliances.",
+      id: 'venture-advisory',
+      title: 'Venture Advisory',
+      description: 'Techno-legal due diligence for funds and VCs, from clean IP title to defensibility of the moat and private capital governance.',
+      tags: [
+        'IP title diligence',
+        'Cap-table & portfolio risk review',
+        'Term sheet & SHA technical protections',
+      ],
+      fullScope: [
+        'Investment Fund Advisory & Private Capital',
+        'Cap-table and shareholder agreement technical protections',
+        'Venture governance & cross-border diligence',
+      ],
     },
     {
-      icon: FileCode2,
-      title: "Venture Advisory",
-      desc: "Techno-legal due diligence for funds and VCs.",
+      id: 'privacy-media',
+      title: 'Privacy & Media Law',
+      description: 'Navigating complex global data-protection, platform governance, and entertainment regulation.',
+      tags: [
+        'GDPR & global compliance',
+        'DPIA & cross-border transfers',
+        'Rights acquisition & content licensing',
+      ],
+      fullScope: [
+        'Privacy Law (cross-border data-transfer structures, platform privacy policies)',
+        'Media & Entertainment Law (streaming rights, creator representation, copyright defence)',
+      ],
     },
     {
-      icon: Lock,
-      title: "Privacy & Media Law",
-      desc: "Navigating complex data and entertainment regulations.",
+      id: 'ip-strategy',
+      title: 'IP Strategy & Valuation',
+      description: 'Monetising patents and intangible assets, with claim architecture that stands up in financing and M&A.',
+      tags: [
+        'Patent prosecution (US · Global · PCT)',
+        'Prior-art intelligence',
+        'Relief-from-royalty & DCF valuation',
+      ],
+      fullScope: [
+        'Intellectual Property Rights',
+        'Innovation Strategy & Tech Transfer',
+        'IP Valuation & Intangible Asset Management',
+        'Asset Brokerage (discreet acquisition, sale, divestment and monetisation of patents)',
+      ],
     },
   ];
 
+  const icons = [GitCommit, FileCheck, LockKeyhole, Shield];
+
   return (
-    <section id="expertise" className="min-h-[85vh] lg:min-h-screen flex flex-col justify-center py-20 lg:py-28 bg-[#F4F9FD] relative">
+    <section id="expertise" className="min-h-[85vh] flex flex-col justify-center py-24 lg:py-32 bg-white relative">
       <div className="max-w-7xl mx-auto px-6 lg:px-12 w-full">
         
-        {/* Headline */}
-        <div className="text-center max-w-3xl mx-auto mb-16 lg:mb-20">
-          <h2 className="text-3xl sm:text-4xl lg:text-6xl font-serif font-light text-[#1A1A1A] tracking-tight">
-            Finance-Aware <span className="font-serif italic font-normal">Techno-Legal Strategy.</span>
+        {/* Headline & Intro */}
+        <div className="text-center max-w-4xl mx-auto mb-16 lg:mb-20 space-y-4">
+          <h2 className="text-3xl sm:text-4xl lg:text-[54px] font-serif font-light text-[#141414] tracking-normal leading-[1.35]">
+            Finance-Aware <span className="font-serif font-normal">Techno-Legal</span> Strategy.
           </h2>
+          
+          <p className="text-sm sm:text-base text-[#3F5F86] font-normal leading-relaxed max-w-2xl mx-auto">
+            Legal architecture designed around the balance sheet, the term sheet and the exit.
+          </p>
+
+          <p className="text-xs sm:text-[13px] text-[#3F5F86]/80 font-medium tracking-wide max-w-3xl mx-auto pt-1">
+            Focus areas: innovation strategy · investment advisory · technology commercialization · intangible asset management · IP valuation · licensing · technology transactions · private capital
+          </p>
         </div>
 
-        {/* 4-Column Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
-          {items.map((item, index) => {
-            const Icon = item.icon;
+        {/* 4-Column Grid on Desktop, 2x2 on Tablet, 1 on Mobile */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-7">
+          {practiceItems.map((item, index) => {
+            const Icon = icons[index];
             return (
               <motion.div
-                key={index}
+                key={item.id}
                 initial={{ opacity: 0, y: 15 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: index * 0.05 }}
-                onClick={() => onOpenConsultation(item.title)}
-                className="bg-white rounded-3xl p-8 border border-sky-200/80 shadow-sm hover:shadow-xl hover:border-[#0284C7]/50 transition-all cursor-pointer group flex flex-col justify-between"
+                onClick={() => setSelectedItem(item)}
+                className="bg-white rounded-2xl p-7 border border-[#3F5F86]/15 hover:border-[#E3A19C] shadow-[0_4px_20px_rgba(20,20,20,0.03)] hover:shadow-[0_12px_32px_rgba(20,20,20,0.07)] transition-all cursor-pointer group flex flex-col justify-between relative overflow-hidden"
               >
-                <div className="space-y-5">
-                  <div className="w-13 h-13 rounded-2xl bg-[#1A1A1A] text-white flex items-center justify-center p-3 transition-transform duration-300 group-hover:scale-105 shadow-md">
-                    <Icon className="w-6 h-6 text-[#C5A059]" />
+                {/* Thin Gold Top Rule */}
+                <div className="absolute top-0 left-6 right-6 h-[2px] bg-[#C6A15B]/30 group-hover:bg-[#C6A15B] transition-colors" />
+
+                <div className="space-y-4 pt-1">
+                  <div className="w-10 h-10 rounded-xl bg-[#EBF3FB] text-[#C6A15B] flex items-center justify-center transition-transform duration-200 group-hover:scale-105 border border-[#3F5F86]/10">
+                    <Icon className="w-5 h-5 text-[#C6A15B]" />
                   </div>
-                  <h3 className="text-xl font-bold text-[#1A1A1A] group-hover:text-[#0284C7] transition-colors leading-snug">
+                  
+                  <h3 className="text-lg font-bold text-[#141414] leading-snug group-hover:text-[#2E8BE8] transition-colors">
                     {item.title}
                   </h3>
-                  <p className="text-sm text-[#475E80] leading-relaxed">
-                    {item.desc}
+                  
+                  <p className="text-sm text-[#3F5F86] leading-relaxed">
+                    {item.description}
                   </p>
+
+                  {/* 3 Tags */}
+                  <div className="pt-2 flex flex-col gap-1.5">
+                    {item.tags.map((tag, tagIdx) => (
+                      <span
+                        key={tagIdx}
+                        className="text-[11px] font-medium text-[#3F5F86] bg-[#EBF3FB]/80 px-2.5 py-1 rounded-md border border-[#3F5F86]/10"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
                 </div>
-                <div className="pt-6 mt-6 border-t border-sky-100 flex items-center text-xs font-bold uppercase tracking-wider text-[#0284C7] group-hover:translate-x-1 transition-transform">
-                  <span>Learn More →</span>
+
+                <div className="pt-5 mt-6 border-t border-[#3F5F86]/10 flex items-center justify-between text-xs font-bold uppercase tracking-[0.06em] text-[#2E8BE8]">
+                  <span>Learn More</span>
+                  <span className="group-hover:translate-x-1 transition-transform">→</span>
                 </div>
               </motion.div>
             );
@@ -75,6 +147,15 @@ export const Expertise: React.FC<ExpertiseProps> = ({ onOpenConsultation }) => {
         </div>
 
       </div>
+
+      {/* Slide-over practice scope drawer */}
+      <ExpertiseDrawer
+        isOpen={!!selectedItem}
+        onClose={() => setSelectedItem(null)}
+        item={selectedItem}
+        onOpenConsultation={onOpenConsultation}
+      />
     </section>
   );
 };
+

@@ -3,9 +3,11 @@ import { Navbar } from '@/components/Navbar';
 import { Hero } from '@/components/Hero';
 import { AboutUs } from '@/components/AboutUs';
 import { Expertise } from '@/components/Expertise';
+import { PracticeAreas } from '@/components/PracticeAreas';
 import { Ventures } from '@/components/Ventures';
 import { ContactFooter } from '@/components/ContactFooter';
 import { ConsultationModal } from '@/components/ConsultationModal';
+import { FloatingWhatsApp } from '@/components/FloatingWhatsApp';
 
 export function App() {
   const [isConsultationOpen, setIsConsultationOpen] = useState(false);
@@ -21,7 +23,7 @@ export function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#F0F7FD] text-[#1A1A1A] font-sans antialiased selection:bg-[#BCE0FD] selection:text-[#0C4A6E]">
+    <div className="min-h-screen bg-[#EBF3FB] text-[#141414] font-sans antialiased selection:bg-[#8DBDF0]/50 selection:text-[#141414]">
       {/* 1. Navbar */}
       <Navbar onOpenConsultation={handleOpenConsultation} />
 
@@ -31,13 +33,16 @@ export function App() {
       {/* 3. About Us Section */}
       <AboutUs />
 
-      {/* 4. Our Expertise Section */}
+      {/* 4. Our Strategic Expertise Section */}
       <Expertise onOpenConsultation={handleOpenConsultation} />
 
-      {/* 5. Ventures / Success Stories Section */}
+      {/* 5. Comprehensive Practice Areas Section */}
+      <PracticeAreas onOpenConsultation={handleOpenConsultation} />
+
+      {/* 6. Ventures / Track Record Section */}
       <Ventures onOpenConsultation={handleOpenConsultation} />
 
-      {/* 6. Contact Us / Footer */}
+      {/* 7. Contact Us / Direct Details & Footer */}
       <ContactFooter onOpenConsultation={handleOpenConsultation} />
 
       {/* Interactive Consultation Modal */}
@@ -46,6 +51,9 @@ export function App() {
         onClose={handleCloseConsultation}
         initialTopic={consultationTopic}
       />
+
+      {/* Floating WhatsApp Contact Button */}
+      <FloatingWhatsApp />
     </div>
   );
 }

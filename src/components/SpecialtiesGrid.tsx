@@ -156,7 +156,7 @@ export const SpecialtiesGrid: React.FC<SpecialtiesGridProps> = ({ onOpenConsulta
               </span>
             </div>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-light text-[#0B1528]">
-              Our Techno-Legal <span className="font-serif italic font-normal">Specialties.</span>
+              Our Techno-Legal <span className="font-serif font-normal">Specialties.</span>
             </h2>
           </div>
           <p className="text-sm text-[#475E80] max-w-md font-normal leading-relaxed">

@@ -67,7 +67,7 @@ export const InterlockingApproach: React.FC = () => {
             </span>
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-light text-[#0B1528]">
-            Finance + Legal + Technical <span className="font-serif italic font-normal">Intelligence.</span>
+            Finance + Legal + Technical <span className="font-serif font-normal">Intelligence.</span>
           </h2>
           <p className="text-sm text-[#475E80] font-normal leading-relaxed max-w-lg mx-auto">
             Most firms advise in isolation. Click any pillar to see how Sensirupt synthesizes all three domains into unified advisory.

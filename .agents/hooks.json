@@ -1,0 +1,23 @@
+{
+  "impeccable-detector": {
+    "PostToolUse": [
+      {
+        "matcher": "replace_file_content|write_to_file|multi_replace_file_content",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node .agents/skills/impeccable/scripts/hook.mjs",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "type": "command",
+        "command": "node .agents/skills/impeccable/scripts/hook.mjs",
+        "timeout": 30
+      }
+    ]
+  }
+}

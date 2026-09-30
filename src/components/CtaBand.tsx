@@ -26,7 +26,7 @@ export const CtaBand: React.FC<CtaBandProps> = ({ onOpenConsultation }) => {
         </div>
 
         <h2 className="text-3xl sm:text-5xl lg:text-6xl text-[#0B1528] tracking-tight leading-tight">
-          <span className="font-serif italic font-normal">Ready for Sensible Disruption</span>{' '}
+          <span className="font-serif font-normal">Ready for Sensible Disruption</span>{' '}
           <span className="font-sans font-extrabold block sm:inline">in Your IP Strategy?</span>
         </h2>
 

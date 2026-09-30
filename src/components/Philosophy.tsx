@@ -26,7 +26,7 @@ export const Philosophy: React.FC = () => {
           >
             <div className="relative">
               <Quote className="w-12 h-12 text-[#0284C7]/25 absolute -top-6 -left-4 pointer-events-none" />
-              <blockquote className="text-2xl sm:text-3xl lg:text-4xl font-serif italic font-normal text-[#0B1528] leading-snug tracking-tight">
+              <blockquote className="text-2xl sm:text-3xl lg:text-4xl font-serif font-normal text-[#0B1528] leading-snug tracking-tight">
                 "Sensirupt embodies sensible disruption — purposeful, thoughtful disruption. Reshaping the world through technology that is bold yet responsible, innovative yet grounded."
               </blockquote>
             </div>

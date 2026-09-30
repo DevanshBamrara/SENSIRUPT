@@ -20,6 +20,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenConsultation }) => {
   const navLinks = [
     { name: 'About', href: '#about' },
     { name: 'Expertise', href: '#expertise' },
+    { name: 'Practice Areas', href: '#practice-areas' },
     { name: 'Ventures', href: '#ventures' },
     { name: 'Contact', href: '#contact' },
   ];
@@ -27,7 +28,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenConsultation }) => {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled
-          ? 'bg-white/90 backdrop-blur-xl border-b border-sky-200/80 py-3.5 shadow-sm'
+          ? 'bg-white/95 backdrop-blur-md border-b border-[#3F5F86]/10 py-3.5 shadow-sm'
           : 'bg-transparent border-b border-transparent py-5'
         }`}
     >
@@ -35,41 +36,41 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenConsultation }) => {
 
         {/* Left: Brand Logo */}
         <div className="flex-1 flex items-center">
-          <a href="#" className="inline-block group">
-            <span className="font-sans font-black text-2xl tracking-tighter text-[#1A1A1A] group-hover:text-[#0284C7] transition-colors duration-200">
+          <a href="#" className="inline-block group focus:outline-none">
+            <span className="font-sans font-extrabold text-2xl tracking-tighter text-[#141414] group-hover:text-[#2E8BE8] transition-colors duration-200">
               SENSIRUPT
             </span>
           </a>
         </div>
 
         {/* Center: Navigation Links */}
-        <nav className="hidden md:flex items-center justify-center gap-9 flex-shrink-0">
+        <nav className="hidden md:flex items-center justify-center gap-8 flex-shrink-0" aria-label="Main Navigation">
           {navLinks.map((link) => (
             <a
               key={link.name}
               href={link.href}
-              className="text-sm font-bold uppercase tracking-wider text-[#1A1A1A] hover:text-[#0284C7] transition-colors duration-200 py-1"
+              className="text-[13px] font-semibold uppercase tracking-[0.06em] text-[#141414] hover:text-[#2E8BE8] transition-colors duration-200 py-1"
             >
               {link.name}
             </a>
           ))}
         </nav>
 
-        {/* Right: Book Briefing Button on the Right */}
+        {/* Right: White pill "Book Briefing →" */}
         <div className="hidden md:flex items-center justify-end flex-1">
           <button
-            onClick={() => onOpenConsultation("Schedule Briefing")}
-            className="bg-white/85 hover:bg-white text-[#1A1A1A] hover:text-[#0284C7] border border-white/90 shadow-sm hover:shadow-md rounded-full px-6 py-2.5 text-xs font-bold uppercase tracking-wider flex items-center gap-2 transition-all hover:scale-105 active:scale-95 backdrop-blur-md"
+            onClick={() => onOpenConsultation("General Advisory Briefing")}
+            className="bg-white hover:bg-[#F4EAD5]/40 text-[#141414] border border-white/90 shadow-[0_2px_12px_rgba(0,0,0,0.06)] rounded-full px-5 py-2.5 text-[13px] font-semibold uppercase tracking-[0.06em] flex items-center gap-2 transition-all duration-200 hover:scale-[1.02] active:scale-95"
           >
             <span>Book Briefing</span>
-            <ArrowRight className="w-3.5 h-3.5 text-[#0284C7]" />
+            <span className="text-[#2E8BE8] font-bold">→</span>
           </button>
         </div>
 
         {/* Mobile Menu Toggle Button */}
         <button
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="md:hidden p-2 text-[#1A1A1A] bg-white/70 backdrop-blur-md rounded-xl transition-colors border border-white/80"
+          className="md:hidden p-2 text-[#141414] bg-white/80 backdrop-blur-md rounded-xl transition-colors border border-white/80 focus:outline-none"
           aria-label="Toggle Navigation"
         >
           {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -78,14 +79,14 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenConsultation }) => {
 
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-white/95 backdrop-blur-2xl border-b border-sky-200 px-6 py-6 space-y-4 shadow-2xl animate-in slide-in-from-top duration-200">
+        <div className="md:hidden bg-white border-b border-[#3F5F86]/10 px-6 py-6 space-y-4 shadow-xl animate-in slide-in-from-top duration-200">
           <nav className="flex flex-col space-y-3">
             {navLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
                 onClick={() => setMobileMenuOpen(false)}
-                className="text-base font-bold uppercase tracking-wider text-[#1A1A1A] py-2 border-b border-sky-100 hover:text-[#0284C7] transition-colors"
+                className="text-sm font-semibold uppercase tracking-[0.06em] text-[#141414] py-2 border-b border-[#EBF3FB] hover:text-[#2E8BE8] transition-colors"
               >
                 {link.name}
               </a>
@@ -95,12 +96,12 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenConsultation }) => {
             <button
               onClick={() => {
                 setMobileMenuOpen(false);
-                onOpenConsultation("Schedule Briefing");
+                onOpenConsultation("General Advisory Briefing");
               }}
-              className="w-full bg-[#1A1A1A] hover:bg-black text-white rounded-full py-3.5 text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2 shadow-lg"
+              className="w-full bg-[#141414] hover:bg-black text-white rounded-full py-3.5 text-xs font-semibold uppercase tracking-[0.06em] flex items-center justify-center gap-2 shadow-md transition-all active:scale-98"
             >
               <span>Book Briefing</span>
-              <ArrowRight className="w-4 h-4 text-[#C5A059]" />
+              <span className="text-[#C6A15B] font-bold">→</span>
             </button>
           </div>
         </div>

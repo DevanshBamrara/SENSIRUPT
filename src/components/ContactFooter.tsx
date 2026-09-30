@@ -1,95 +1,247 @@
-import React from 'react';
-import { MapPin, Mail, Phone, ArrowRight } from 'lucide-react';
+import React, { useState } from 'react';
+import { MapPin, Mail, Phone, Lock, CheckCircle2 } from 'lucide-react';
 
 interface ContactFooterProps {
   onOpenConsultation: (topic?: string) => void;
 }
 
 export const ContactFooter: React.FC<ContactFooterProps> = ({ onOpenConsultation }) => {
+  const [formState, setFormState] = useState({
+    name: '',
+    email: '',
+    company: '',
+    practiceArea: 'IP Strategy & Valuation',
+    message: '',
+    honeypot: '',
+  });
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (formState.honeypot) return; // Silent discard for bot submission
+    setSubmitted(true);
+  };
+
   return (
-    <footer id="contact" className="min-h-[85vh] lg:min-h-screen flex flex-col justify-between bg-white border-t border-sky-200/80 pt-24 pb-12 text-[#1A1A1A]">
+    <footer id="contact" className="min-h-[85vh] flex flex-col justify-between bg-white border-t border-[#3F5F86]/10 pt-24 pb-12 text-[#141414]">
       <div className="max-w-7xl mx-auto px-6 lg:px-12 w-full my-auto">
 
         {/* Main Contact Section */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 pb-16 border-b border-sky-100 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 pb-16 border-b border-[#3F5F86]/10 items-start">
 
-          {/* Left: Headline & CTA */}
-          <div className="lg:col-span-6 space-y-7">
-            <h2 className="text-4xl sm:text-5xl lg:text-7xl font-serif font-light text-[#1A1A1A] tracking-tight leading-[1.08]">
-              Disrupt Sensibly. <br />
-              <span className="font-serif italic font-normal text-[#0284C7]">Let's talk.</span>
-            </h2>
-            <p className="text-base sm:text-lg text-[#475E80] max-w-md font-normal leading-relaxed">
-              Connect directly with our boutique techno-legal advisory team for a confidential, conflict-checked consultation.
-            </p>
+          {/* Left Column: Heading, Copy, CTA & Details Block */}
+          <div className="lg:col-span-6 space-y-8">
+            <div className="space-y-4">
+              <h2 className="text-4xl sm:text-5xl lg:text-[62px] font-serif font-light text-[#141414] tracking-normal leading-[1.32]">
+                <span>Disrupt Sensibly.</span> <br />
+                <span className="font-serif font-normal text-[#2E8BE8]">Let's talk.</span>
+              </h2>
+              <p className="text-[17px] sm:text-[19px] text-[#3F5F86] max-w-lg font-normal leading-[1.6]">
+                Connect directly with our boutique techno-legal advisory team for a confidential, conflict-checked consultation.
+              </p>
+            </div>
+
+            {/* Quick Action Button */}
             <div>
               <button
                 onClick={() => onOpenConsultation("General Advisory Briefing")}
-                className="bg-[#1A1A1A] hover:bg-black text-white px-9 py-4 rounded-full text-xs font-bold uppercase tracking-wider flex items-center gap-3 transition-all hover:scale-105 active:scale-95 shadow-xl"
+                className="bg-[#141414] hover:bg-black text-white px-8 py-4 rounded-full text-xs font-bold uppercase tracking-[0.06em] flex items-center gap-3 transition-all hover:scale-[1.02] active:scale-95 shadow-md"
               >
                 <span>Book Briefing</span>
-                <ArrowRight className="w-4 h-4 text-[#C5A059]" />
+                <span className="text-[#C6A15B] font-bold">→</span>
               </button>
             </div>
-          </div>
 
-          {/* Right: Contact Details */}
-          <div className="lg:col-span-6 space-y-6 bg-[#F4F9FD] rounded-3xl p-8 sm:p-12 border border-sky-200/80 shadow-lg">
-            <div className="space-y-6 text-sm text-[#2A3447]">
-
-              {/* Address */}
+            {/* Direct Contact Details Block */}
+            <div className="space-y-4 pt-4 border-t border-[#3F5F86]/10 max-w-md">
               <div className="flex items-start gap-4">
-                <div className="w-10 h-10 rounded-full bg-white border border-sky-200 flex items-center justify-center shrink-0 text-[#0284C7] shadow-xs mt-0.5">
+                <div className="w-9 h-9 rounded-xl bg-[#EBF3FB] border border-[#3F5F86]/10 flex items-center justify-center shrink-0 text-[#C6A15B] mt-0.5">
                   <MapPin className="w-4 h-4" />
                 </div>
                 <div>
-                  <div className="text-xs font-bold uppercase tracking-wider text-[#1A1A1A] mb-1">Address</div>
-                  <div className="leading-relaxed text-xs sm:text-sm text-[#475E80] font-medium">
-                    [Insert Office Address / Corporate Chambers]
+                  <div className="text-[11px] font-bold uppercase tracking-[0.06em] text-[#141414]">Office Address</div>
+                  <div className="text-sm font-medium text-[#3F5F86] leading-relaxed">
+                    20th Floor, Galaxy Blue Sapphire Plaza, Greater Noida W Rd, Sector 4, Noida, UP - 201309
                   </div>
                 </div>
               </div>
 
-              {/* Email */}
               <div className="flex items-center gap-4">
-                <div className="w-10 h-10 rounded-full bg-white border border-sky-200 flex items-center justify-center shrink-0 text-[#0284C7] shadow-xs">
+                <div className="w-9 h-9 rounded-xl bg-[#EBF3FB] border border-[#3F5F86]/10 flex items-center justify-center shrink-0 text-[#C6A15B]">
                   <Mail className="w-4 h-4" />
                 </div>
                 <div>
-                  <div className="text-xs font-bold uppercase tracking-wider text-[#1A1A1A] mb-1">Email</div>
-                  <span className="text-xs sm:text-sm text-[#0284C7] font-bold">
-                    [Insert Email Address]
-                  </span>
+                  <div className="text-[11px] font-bold uppercase tracking-[0.06em] text-[#141414]">Direct Email</div>
+                  <a
+                    href="mailto:info@sensirupt.com"
+                    className="text-sm font-semibold text-[#2E8BE8] hover:underline"
+                  >
+                    info@sensirupt.com
+                  </a>
                 </div>
               </div>
 
-              {/* Contact Phone */}
               <div className="flex items-center gap-4">
-                <div className="w-10 h-10 rounded-full bg-white border border-sky-200 flex items-center justify-center shrink-0 text-[#0284C7] shadow-xs">
+                <div className="w-9 h-9 rounded-xl bg-[#EBF3FB] border border-[#3F5F86]/10 flex items-center justify-center shrink-0 text-[#C6A15B]">
                   <Phone className="w-4 h-4" />
                 </div>
                 <div>
-                  <div className="text-xs font-bold uppercase tracking-wider text-[#1A1A1A] mb-1">Contact</div>
-                  <span className="text-xs sm:text-sm text-[#1A1A1A] font-bold">
-                    +91 [Insert Contact Number]
-                  </span>
+                  <div className="text-[11px] font-bold uppercase tracking-[0.06em] text-[#141414]">Direct Phone / WhatsApp</div>
+                  <a
+                    href="https://wa.me/917827963285"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm font-semibold text-[#141414] hover:text-[#2E8BE8] transition-colors"
+                  >
+                    +91 78279 63285
+                  </a>
                 </div>
               </div>
-
             </div>
+          </div>
+
+          {/* Right Column: Direct Confidential Inquiry Form */}
+          <div className="lg:col-span-6 bg-[#EBF3FB] rounded-2xl p-8 sm:p-10 border border-[#3F5F86]/15 shadow-sm">
+            {!submitted ? (
+              <form onSubmit={handleSubmit} className="space-y-4">
+                {/* Honeypot field (hidden from legitimate users) */}
+                <div className="hidden" aria-hidden="true">
+                  <input
+                    type="text"
+                    name="website_url"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    value={formState.honeypot}
+                    onChange={(e) => setFormState({ ...formState, honeypot: e.target.value })}
+                  />
+                </div>
+
+                <div className="border-b border-[#3F5F86]/10 pb-3 mb-4">
+                  <span className="text-xs uppercase font-bold tracking-[0.06em] text-[#C6A15B]">
+                    Confidential Desk
+                  </span>
+                  <h3 className="text-xl font-bold text-[#141414] mt-1">
+                    Direct Inquiry & Briefing Request
+                  </h3>
+                </div>
+
+                <div>
+                  <label className="block text-[11px] font-bold uppercase tracking-[0.06em] text-[#141414] mb-1.5">
+                    Name <span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    required
+                    value={formState.name}
+                    onChange={(e) => setFormState({ ...formState, name: e.target.value })}
+                    placeholder="Your Full Name"
+                    className="w-full h-11 px-4 rounded-xl bg-white border border-[#3F5F86]/20 text-sm font-medium text-[#141414] focus:outline-none focus:border-[#2E8BE8] focus:ring-2 focus:ring-[#2E8BE8]/20 transition-all placeholder:text-[#3F5F86]/60"
+                  />
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-[11px] font-bold uppercase tracking-[0.06em] text-[#141414] mb-1.5">
+                      Work Email <span className="text-red-500">*</span>
+                    </label>
+                    <input
+                      type="email"
+                      required
+                      value={formState.email}
+                      onChange={(e) => setFormState({ ...formState, email: e.target.value })}
+                      placeholder="name@company.com"
+                      className="w-full h-11 px-4 rounded-xl bg-white border border-[#3F5F86]/20 text-sm font-medium text-[#141414] focus:outline-none focus:border-[#2E8BE8] focus:ring-2 focus:ring-[#2E8BE8]/20 transition-all placeholder:text-[#3F5F86]/60"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-[11px] font-bold uppercase tracking-[0.06em] text-[#141414] mb-1.5">
+                      Company
+                    </label>
+                    <input
+                      type="text"
+                      value={formState.company}
+                      onChange={(e) => setFormState({ ...formState, company: e.target.value })}
+                      placeholder="Company / Fund Name"
+                      className="w-full h-11 px-4 rounded-xl bg-white border border-[#3F5F86]/20 text-sm font-medium text-[#141414] focus:outline-none focus:border-[#2E8BE8] focus:ring-2 focus:ring-[#2E8BE8]/20 transition-all placeholder:text-[#3F5F86]/60"
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-[11px] font-bold uppercase tracking-[0.06em] text-[#141414] mb-1.5">
+                    Practice Area
+                  </label>
+                  <select
+                    value={formState.practiceArea}
+                    onChange={(e) => setFormState({ ...formState, practiceArea: e.target.value })}
+                    className="w-full h-11 px-4 rounded-xl bg-white border border-[#3F5F86]/20 text-sm font-medium text-[#141414] focus:outline-none focus:border-[#2E8BE8] focus:ring-2 focus:ring-[#2E8BE8]/20 transition-all"
+                  >
+                    <option value="IP Strategy & Valuation">IP Strategy & Valuation</option>
+                    <option value="Tech Law & Transactions">Tech Law & Transactions</option>
+                    <option value="Venture Advisory">Venture Advisory</option>
+                    <option value="Privacy & Media Law">Privacy & Media Law</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label className="block text-[11px] font-bold uppercase tracking-[0.06em] text-[#141414] mb-1.5">
+                    Message
+                  </label>
+                  <textarea
+                    rows={3}
+                    value={formState.message}
+                    onChange={(e) => setFormState({ ...formState, message: e.target.value })}
+                    placeholder="Briefly describe your IP, transaction, or advisory scope…"
+                    className="w-full p-3.5 rounded-xl bg-white border border-[#3F5F86]/20 text-sm font-medium text-[#141414] focus:outline-none focus:border-[#2E8BE8] focus:ring-2 focus:ring-[#2E8BE8]/20 transition-all resize-none placeholder:text-[#3F5F86]/60"
+                  />
+                </div>
+
+                <div className="pt-2">
+                  <button
+                    type="submit"
+                    className="w-full bg-[#141414] hover:bg-black text-white py-3.5 rounded-full text-xs font-bold uppercase tracking-[0.06em] flex items-center justify-center gap-2 shadow-sm transition-all hover:scale-[1.01] active:scale-98"
+                  >
+                    <span>Send Confidential Request</span>
+                    <span className="text-[#C6A15B] font-bold">→</span>
+                  </button>
+                </div>
+
+                <div className="flex items-center justify-center gap-2 text-xs text-[#3F5F86] pt-1">
+                  <Lock className="w-3.5 h-3.5 text-[#C6A15B]" />
+                  <span>Strict Professional Privilege & Conflict Checking</span>
+                </div>
+              </form>
+            ) : (
+              <div className="text-center py-10 space-y-4">
+                <div className="w-14 h-14 rounded-full bg-white border border-[#3F5F86]/20 flex items-center justify-center mx-auto text-[#2E8BE8]">
+                  <CheckCircle2 className="w-7 h-7 text-[#2E8BE8]" />
+                </div>
+                <h4 className="text-2xl font-serif font-bold text-[#141414]">Inquiry Received</h4>
+                <p className="text-sm text-[#3F5F86] max-w-sm mx-auto leading-relaxed">
+                  Thank you, <strong>{formState.name}</strong>. Our senior advisory desk is reviewing your request with conflict checks.
+                </p>
+                <button
+                  onClick={() => setSubmitted(false)}
+                  className="bg-[#141414] text-white hover:bg-black px-6 py-2.5 rounded-full text-xs font-bold uppercase tracking-[0.06em]"
+                >
+                  Send Another Inquiry
+                </button>
+              </div>
+            )}
           </div>
 
         </div>
 
-        {/* Bottom Bar */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-[#64748B] gap-4">
+        {/* Section 3.7: Footer */}
+        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-[#3F5F86] gap-4">
           <div className="flex items-center gap-2">
-            <span className="font-black text-[#1A1A1A]">SENSIRUPT</span>
-            <span>— © {new Date().getFullYear()} All rights reserved.</span>
+            <span className="font-extrabold text-[#141414] tracking-tight">SENSIRUPT</span>
+            <span>— © 2026 All rights reserved.</span>
           </div>
-          <div className="flex items-center gap-6 text-[11px] font-medium">
-            <span className="hover:text-[#1A1A1A] cursor-pointer">Confidentiality Policy</span>
-            <span className="hover:text-[#1A1A1A] cursor-pointer">Terms of Advisory</span>
+          <div className="flex items-center gap-6 text-xs font-medium">
+            <a href="#contact" className="hover:text-[#141414] transition-colors">Confidentiality Policy</a>
+            <span className="text-[#3F5F86]/30">·</span>
+            <a href="#contact" className="hover:text-[#141414] transition-colors">Terms of Advisory</a>
           </div>
         </div>
 
@@ -97,3 +249,4 @@ export const ContactFooter: React.FC<ContactFooterProps> = ({ onOpenConsultation
     </footer>
   );
 };
+

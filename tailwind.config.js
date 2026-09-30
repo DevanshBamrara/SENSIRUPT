@@ -23,29 +23,30 @@ module.exports = {
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         canvas: "#FAF8F5",
-        alabaster: "#FAF8F5",
-        ivory: {
-          DEFAULT: "#F4EFE6",
-          dark: "#E8DFD0",
-          warm: "#FBF9F4"
-        },
-        onyx: {
-          DEFAULT: "#0E121B",
-          light: "#1C2230",
-          muted: "#4A5568"
+        brand: {
+          sky: "#2E8BE8",
+          skyLight: "#8DBDF0",
+          paleSky: "#EBF3FB",
+          cloudCream: "#F4EAD5",
+          robePink: "#E3A19C",
+          blush: "#EBC9B5",
+          gold: "#C6A15B",
+          ink: "#141414",
+          slate: "#3F5F86",
+          white: "#FFFFFF",
         },
         gold: {
-          DEFAULT: "#C5A880",
+          DEFAULT: "#C6A15B",
           dark: "#9E7D47",
           light: "#DFC8A8",
-          rich: "#D4AF37",
-          subtle: "#F5ECE1"
+          rich: "#C6A15B",
+          subtle: "#F4EAD5",
         },
         sky: {
-          vibrant: "#2589E6",
-          light: "#D8EEFE",
-          soft: "#EDF6FD",
-          deep: "#0F4C81"
+          vibrant: "#2E8BE8",
+          light: "#8DBDF0",
+          soft: "#EBF3FB",
+          deep: "#3F5F86",
         },
         primary: {
           DEFAULT: "hsl(var(--primary))",
@@ -77,7 +78,7 @@ module.exports = {
         },
       },
       fontFamily: {
-        serif: ['Fraunces', 'Playfair Display', 'Cormorant Garamond', 'Georgia', 'serif'],
+        serif: ['Newsreader', 'Fraunces', 'Playfair Display', 'Cormorant Garamond', 'Georgia', 'serif'],
         cinzel: ['Cinzel', 'serif'],
         sans: ['Plus Jakarta Sans', 'Inter', '-apple-system', 'sans-serif'],
       },

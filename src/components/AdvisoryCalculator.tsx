@@ -78,7 +78,7 @@ export const AdvisoryCalculator: React.FC<AdvisoryCalculatorProps> = ({ onOpenCo
               </span>
             </div>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-light text-[#0B1528]">
-              Techno-Legal Strategy <span className="font-serif italic font-normal">Estimator.</span>
+              Techno-Legal Strategy <span className="font-serif font-normal">Estimator.</span>
             </h2>
           </div>
           <p className="text-sm text-[#475E80] max-w-md font-normal leading-relaxed">

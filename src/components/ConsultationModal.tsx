@@ -59,13 +59,13 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({
             <div>
               {/* Header */}
               <div className="mb-6">
-                <span className="text-xs uppercase font-extrabold tracking-widest text-[#0284C7]">
+                <span className="text-xs uppercase font-bold tracking-[0.06em] text-[#C6A15B]">
                   Confidential Advisory Desk
                 </span>
-                <h3 className="text-2xl sm:text-3xl font-serif font-bold text-slate-900 mt-1">
+                <h3 className="text-2xl sm:text-3xl font-serif font-light text-[#141414] mt-1">
                   Schedule Briefing
                 </h3>
-                <p className="text-sm text-slate-600 mt-2 leading-relaxed">
+                <p className="text-sm text-[#3F5F86] mt-2 leading-relaxed">
                   Connect directly with our boutique techno-legal advisory team. Inquiries undergo strict conflict-checking under NDA.
                 </p>
               </div>
@@ -73,7 +73,7 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({
               {/* Form */}
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
-                  <label className="block text-xs font-bold uppercase tracking-wider text-slate-800 mb-1.5">
+                  <label className="block text-[11px] font-bold uppercase tracking-[0.06em] text-[#141414] mb-1.5">
                     Full Name <span className="text-red-500">*</span>
                   </label>
                   <input
@@ -82,13 +82,13 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({
                     value={fullName}
                     onChange={(e) => setFullName(e.target.value)}
                     placeholder="e.g. Dr. Aris Thorne"
-                    className="w-full h-12 px-4 rounded-xl bg-white border-2 border-slate-200 text-sm font-semibold text-slate-900 focus:outline-none focus:border-[#0284C7] focus:ring-4 focus:ring-sky-100 transition-all placeholder:text-slate-400"
+                    className="w-full h-11 px-4 rounded-xl bg-white border border-[#3F5F86]/20 text-sm font-medium text-[#141414] focus:outline-none focus:border-[#2E8BE8] focus:ring-2 focus:ring-[#2E8BE8]/20 transition-all placeholder:text-[#3F5F86]/50"
                   />
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-xs font-bold uppercase tracking-wider text-slate-800 mb-1.5">
+                    <label className="block text-[11px] font-bold uppercase tracking-[0.06em] text-[#141414] mb-1.5">
                       Work Email <span className="text-red-500">*</span>
                     </label>
                     <input
@@ -97,11 +97,11 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="name@company.com"
-                      className="w-full h-12 px-4 rounded-xl bg-white border-2 border-slate-200 text-sm font-semibold text-slate-900 focus:outline-none focus:border-[#0284C7] focus:ring-4 focus:ring-sky-100 transition-all placeholder:text-slate-400"
+                      className="w-full h-11 px-4 rounded-xl bg-white border border-[#3F5F86]/20 text-sm font-medium text-[#141414] focus:outline-none focus:border-[#2E8BE8] focus:ring-2 focus:ring-[#2E8BE8]/20 transition-all placeholder:text-[#3F5F86]/50"
                     />
                   </div>
                   <div>
-                    <label className="block text-xs font-bold uppercase tracking-wider text-slate-800 mb-1.5">
+                    <label className="block text-[11px] font-bold uppercase tracking-[0.06em] text-[#141414] mb-1.5">
                       Company / Fund
                     </label>
                     <input
@@ -109,36 +109,36 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({
                       value={company}
                       onChange={(e) => setCompany(e.target.value)}
                       placeholder="e.g. Nexus BioTech"
-                      className="w-full h-12 px-4 rounded-xl bg-white border-2 border-slate-200 text-sm font-semibold text-slate-900 focus:outline-none focus:border-[#0284C7] focus:ring-4 focus:ring-sky-100 transition-all placeholder:text-slate-400"
+                      className="w-full h-11 px-4 rounded-xl bg-white border border-[#3F5F86]/20 text-sm font-medium text-[#141414] focus:outline-none focus:border-[#2E8BE8] focus:ring-2 focus:ring-[#2E8BE8]/20 transition-all placeholder:text-[#3F5F86]/50"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold uppercase tracking-wider text-slate-800 mb-1.5">
+                  <label className="block text-[11px] font-bold uppercase tracking-[0.06em] text-[#141414] mb-1.5">
                     Inquiry Details / Scope Summary
                   </label>
                   <textarea
                     rows={3}
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
-                    placeholder="Describe your tech, patent portfolio, or deal objective..."
-                    className="w-full p-4 rounded-xl bg-white border-2 border-slate-200 text-sm font-semibold text-slate-900 focus:outline-none focus:border-[#0284C7] focus:ring-4 focus:ring-sky-100 transition-all resize-none placeholder:text-slate-400"
+                    placeholder="Describe your tech, patent portfolio, or deal objective…"
+                    className="w-full p-3.5 rounded-xl bg-white border border-[#3F5F86]/20 text-sm font-medium text-[#141414] focus:outline-none focus:border-[#2E8BE8] focus:ring-2 focus:ring-[#2E8BE8]/20 transition-all resize-none placeholder:text-[#3F5F86]/50"
                   />
                 </div>
 
                 <div className="pt-2">
                   <button
                     type="submit"
-                    className="w-full bg-[#1A1A1A] hover:bg-black text-white py-4 rounded-full text-xs font-extrabold uppercase tracking-wider flex items-center justify-center gap-2 shadow-lg transition-all hover:scale-[1.01] active:scale-98"
+                    className="w-full bg-[#141414] hover:bg-black text-white py-3.5 rounded-full text-xs font-bold uppercase tracking-[0.06em] flex items-center justify-center gap-2 shadow-md transition-all hover:scale-[1.01] active:scale-98"
                   >
                     <span>Submit Confidential Inquiry</span>
-                    <ArrowRight className="w-4 h-4 text-[#C5A059]" />
+                    <ArrowRight className="w-4 h-4 text-[#C6A15B]" />
                   </button>
                 </div>
 
-                <div className="flex items-center justify-center gap-2 text-xs font-medium text-slate-500 pt-1">
-                  <Lock className="w-3.5 h-3.5 text-[#0284C7]" />
+                <div className="flex items-center justify-center gap-2 text-xs font-medium text-[#3F5F86] pt-1">
+                  <Lock className="w-3.5 h-3.5 text-[#C6A15B]" />
                   <span>256-Bit Encrypted • Strict Professional Confidentiality</span>
                 </div>
               </form>

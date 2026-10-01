@@ -64,15 +64,19 @@ export const Hero: React.FC<HeroProps> = ({ onOpenConsultation }) => {
   };
 
   return (
-    <section className="relative min-h-screen w-full overflow-hidden sky-hero-backdrop flex items-center justify-center select-none pt-28 pb-16 lg:pt-0 lg:pb-0">
-      <div className="max-w-7xl mx-auto px-6 lg:px-12 w-full grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center z-10">
+    <section className="relative min-h-[100dvh] w-full overflow-hidden sky-hero-backdrop flex flex-col justify-center select-none pt-28 sm:pt-32 lg:pt-24 pb-12 sm:pb-16 lg:pb-16">
+      {/* Delicate ambient blush & sky atmosphere */}
+      <div className="absolute top-1/4 left-10 w-80 h-80 rounded-full bg-[#8DBDF0]/25 blur-3xl pointer-events-none -z-0" />
+      <div className="absolute bottom-10 right-1/4 w-96 h-96 rounded-full bg-[#E3A19C]/20 blur-3xl pointer-events-none -z-0" />
+
+      <div className="max-w-7xl mx-auto px-6 lg:px-12 w-full grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center my-auto z-10">
         
         {/* LEFT COLUMN: Two-Voice Headline, Subcopy & Glass Input Pill (~65%) */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          className="lg:col-span-7 flex flex-col items-start space-y-7 order-1"
+          className="lg:col-span-7 flex flex-col items-start justify-center space-y-6 sm:space-y-7 order-1"
         >
           {/* Two-Voice Headline - Upright, Generous Line-Height (No Italic) */}
           <h1 className="text-[#141414] text-left">
@@ -91,7 +95,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenConsultation }) => {
 
           {/* Glassmorphic Input Pill with Compact, Visible Typewriter */}
           <div className="w-full max-w-xl pt-1">
-            <form onSubmit={handleSubmit} className="relative flex items-center rounded-full hero-glass-pill p-1.5 transition-all focus-within:bg-white/85 focus-within:shadow-[0_12px_36px_rgba(46,139,232,0.22)]">
+            <form onSubmit={handleSubmit} className="relative flex items-center rounded-full hero-glass-pill p-1.5 transition-all focus-within:bg-white/90 shadow-[0_12px_36px_rgba(46,139,232,0.20),0_4px_20px_rgba(227,161,156,0.22)] border border-white/90 focus-within:border-[#E3A19C]/70">
               <input
                 type="text"
                 value={promptInput}
@@ -110,14 +114,18 @@ export const Hero: React.FC<HeroProps> = ({ onOpenConsultation }) => {
               </button>
             </form>
 
-            {/* Micro-line under pill */}
-            <p className="mt-3 pl-4 text-xs sm:text-[13px] tracking-wide text-[#3F5F86] font-medium">
-              Global Innovation & Tech Strategy · Cross-Border Transactions · Deep-Tech Commercialization
+            {/* Micro-line under pill with subtle brand accents */}
+            <p className="mt-3 pl-4 text-xs sm:text-[13px] tracking-wide text-[#3F5F86] font-medium flex items-center gap-2 flex-wrap">
+              <span>Global Innovation & Tech Strategy</span>
+              <span className="text-[#E3A19C] font-bold">·</span>
+              <span>Cross-Border Transactions</span>
+              <span className="text-[#2E8BE8] font-bold">·</span>
+              <span>Deep-Tech Commercialization</span>
             </p>
           </div>
         </motion.div>
 
-        {/* RIGHT COLUMN: Lady Justice Cutout (~35%) */}
+        {/* RIGHT COLUMN: Lady Justice Cutout (~35%) with Pink & Sky Halo */}
         <motion.div
           initial={{ opacity: 0, scale: 0.96 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -125,6 +133,9 @@ export const Hero: React.FC<HeroProps> = ({ onOpenConsultation }) => {
           className="lg:col-span-5 relative flex items-center justify-center lg:justify-end order-2 mt-2 lg:mt-0"
         >
           <div className="relative w-full max-w-[280px] sm:max-w-[340px] lg:max-w-[380px] aspect-[2/3] flex items-center justify-center">
+            {/* Signature Robe-Pink & Sky-Blue Ambient Halo */}
+            <div className="absolute -inset-6 sm:-inset-10 rounded-full bg-gradient-to-tr from-[#E3A19C]/35 via-[#EBC9B5]/25 to-[#8DBDF0]/30 blur-3xl -z-10 pointer-events-none" />
+            
             <picture className="w-full h-full flex items-center justify-center">
               <source srcSet="/lady-justice-cutout.webp" type="image/webp" />
               <img

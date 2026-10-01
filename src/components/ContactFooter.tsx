@@ -23,8 +23,13 @@ export const ContactFooter: React.FC<ContactFooterProps> = ({ onOpenConsultation
   };
 
   return (
-    <footer id="contact" className="min-h-[85vh] flex flex-col justify-between bg-white border-t border-[#3F5F86]/10 pt-24 pb-12 text-[#141414]">
-      <div className="max-w-7xl mx-auto px-6 lg:px-12 w-full my-auto">
+    <footer id="contact" className="min-h-[85vh] flex flex-col justify-between bg-white relative overflow-hidden pt-24 pb-12 text-[#141414]">
+      {/* Signature Bluish & Pinkish Ambient Lighting */}
+      <div className="absolute top-0 left-0 right-0 h-[1.5px] bg-gradient-to-r from-transparent via-[#8DBDF0]/55 via-[#E3A19C]/45 to-transparent z-10" />
+      <div className="absolute top-12 left-0 w-[480px] h-[480px] rounded-full bg-gradient-to-br from-[#8DBDF0]/20 via-[#2E8BE8]/8 to-transparent blur-3xl pointer-events-none" />
+      <div className="absolute bottom-12 right-0 w-[480px] h-[480px] rounded-full bg-gradient-to-tl from-[#E3A19C]/18 via-[#EBC9B5]/12 to-transparent blur-3xl pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto px-6 lg:px-12 w-full my-auto relative z-10">
 
         {/* Main Contact Section */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 pb-16 border-b border-[#3F5F86]/10 items-start">
@@ -45,7 +50,7 @@ export const ContactFooter: React.FC<ContactFooterProps> = ({ onOpenConsultation
             <div>
               <button
                 onClick={() => onOpenConsultation("General Advisory Briefing")}
-                className="bg-[#141414] hover:bg-black text-white px-8 py-4 rounded-full text-xs font-bold uppercase tracking-[0.06em] flex items-center gap-3 transition-all hover:scale-[1.02] active:scale-95 shadow-md"
+                className="bg-[#141414] hover:bg-black text-white px-8 py-4 rounded-full text-xs font-bold uppercase tracking-[0.06em] flex items-center gap-3 transition-all hover:scale-[1.02] active:scale-95 shadow-md hover:shadow-[0_8px_24px_rgba(46,139,232,0.25)]"
               >
                 <span>Book Briefing</span>
                 <span className="text-[#C6A15B] font-bold">→</span>
@@ -55,7 +60,7 @@ export const ContactFooter: React.FC<ContactFooterProps> = ({ onOpenConsultation
             {/* Direct Contact Details Block */}
             <div className="space-y-4 pt-4 border-t border-[#3F5F86]/10 max-w-md">
               <div className="flex items-start gap-4">
-                <div className="w-9 h-9 rounded-xl bg-[#EBF3FB] border border-[#3F5F86]/10 flex items-center justify-center shrink-0 text-[#C6A15B] mt-0.5">
+                <div className="w-9 h-9 rounded-xl bg-[#EBF3FB] border border-[#8DBDF0]/20 flex items-center justify-center shrink-0 text-[#C6A15B] mt-0.5">
                   <MapPin className="w-4 h-4" />
                 </div>
                 <div>
@@ -67,14 +72,14 @@ export const ContactFooter: React.FC<ContactFooterProps> = ({ onOpenConsultation
               </div>
 
               <div className="flex items-center gap-4">
-                <div className="w-9 h-9 rounded-xl bg-[#EBF3FB] border border-[#3F5F86]/10 flex items-center justify-center shrink-0 text-[#C6A15B]">
+                <div className="w-9 h-9 rounded-xl bg-[#EBF3FB] border border-[#8DBDF0]/20 flex items-center justify-center shrink-0 text-[#C6A15B]">
                   <Mail className="w-4 h-4" />
                 </div>
                 <div>
                   <div className="text-[11px] font-bold uppercase tracking-[0.06em] text-[#141414]">Direct Email</div>
                   <a
                     href="mailto:info@sensirupt.com"
-                    className="text-sm font-semibold text-[#2E8BE8] hover:underline"
+                    className="text-sm font-semibold text-[#2E8BE8] hover:text-[#141414] transition-colors"
                   >
                     info@sensirupt.com
                   </a>
@@ -82,7 +87,7 @@ export const ContactFooter: React.FC<ContactFooterProps> = ({ onOpenConsultation
               </div>
 
               <div className="flex items-center gap-4">
-                <div className="w-9 h-9 rounded-xl bg-[#EBF3FB] border border-[#3F5F86]/10 flex items-center justify-center shrink-0 text-[#C6A15B]">
+                <div className="w-9 h-9 rounded-xl bg-[#EBF3FB] border border-[#8DBDF0]/20 flex items-center justify-center shrink-0 text-[#C6A15B]">
                   <Phone className="w-4 h-4" />
                 </div>
                 <div>
@@ -100,8 +105,10 @@ export const ContactFooter: React.FC<ContactFooterProps> = ({ onOpenConsultation
             </div>
           </div>
 
-          {/* Right Column: Direct Confidential Inquiry Form */}
-          <div className="lg:col-span-6 bg-[#EBF3FB] rounded-2xl p-8 sm:p-10 border border-[#3F5F86]/15 shadow-sm">
+          {/* Right Column: Direct Confidential Inquiry Form with Top Accent */}
+          <div className="lg:col-span-6 bg-[#EBF3FB]/90 rounded-2xl p-8 sm:p-10 border border-[#8DBDF0]/25 shadow-[0_8px_30px_rgba(46,139,232,0.06),0_2px_12px_rgba(227,161,156,0.08)] relative overflow-hidden">
+            {/* Top Tri-Tone Accent Line */}
+            <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[#2E8BE8] via-[#C6A15B] to-[#E3A19C]" />
             {!submitted ? (
               <form onSubmit={handleSubmit} className="space-y-4">
                 {/* Honeypot field (hidden from legitimate users) */}

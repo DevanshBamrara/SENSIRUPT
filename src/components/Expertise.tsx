@@ -76,13 +76,19 @@ export const Expertise: React.FC<ExpertiseProps> = ({ onOpenConsultation }) => {
   const icons = [GitCommit, FileCheck, LockKeyhole, Shield];
 
   return (
-    <section id="expertise" className="min-h-[85vh] flex flex-col justify-center py-24 lg:py-32 bg-white relative">
-      <div className="max-w-7xl mx-auto px-6 lg:px-12 w-full">
+    <section id="expertise" className="min-h-[85vh] flex flex-col justify-center py-24 lg:py-32 bg-[#EBF3FB] relative overflow-hidden">
+      {/* Signature Bluish & Pinkish Ambient Lighting */}
+      <div className="absolute top-0 left-0 right-0 h-[1.5px] bg-gradient-to-r from-transparent via-[#8DBDF0]/55 via-[#E3A19C]/45 to-transparent z-10" />
+      <div className="absolute top-12 right-0 w-[500px] h-[500px] rounded-full bg-gradient-to-bl from-[#E3A19C]/20 via-[#EBC9B5]/15 to-transparent blur-3xl pointer-events-none" />
+      <div className="absolute bottom-12 left-0 w-[500px] h-[500px] rounded-full bg-gradient-to-tr from-[#8DBDF0]/25 via-[#2E8BE8]/10 to-transparent blur-3xl pointer-events-none" />
+      <div className="absolute bottom-0 left-0 right-0 h-[1.5px] bg-gradient-to-r from-transparent via-[#E3A19C]/45 via-[#8DBDF0]/55 to-transparent z-10" />
+
+      <div className="max-w-7xl mx-auto px-6 lg:px-12 w-full relative z-10">
         
         {/* Headline & Intro */}
         <div className="text-center max-w-4xl mx-auto mb-16 lg:mb-20 space-y-4">
           <h2 className="text-3xl sm:text-4xl lg:text-[54px] font-serif font-light text-[#141414] tracking-normal leading-[1.35]">
-            Finance-Aware <span className="font-serif font-normal">Techno-Legal</span> Strategy.
+            Finance-Aware <span className="font-serif font-normal text-[#2E8BE8]">Techno-Legal</span> Strategy.
           </h2>
           
           <p className="text-sm sm:text-base text-[#3F5F86] font-normal leading-relaxed max-w-2xl mx-auto">
@@ -106,13 +112,13 @@ export const Expertise: React.FC<ExpertiseProps> = ({ onOpenConsultation }) => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: index * 0.05 }}
                 onClick={() => setSelectedItem(item)}
-                className="bg-white rounded-2xl p-7 border border-[#3F5F86]/15 hover:border-[#E3A19C] shadow-[0_4px_20px_rgba(20,20,20,0.03)] hover:shadow-[0_12px_32px_rgba(20,20,20,0.07)] transition-all cursor-pointer group flex flex-col justify-between relative overflow-hidden"
+                className="bg-white rounded-2xl p-7 border border-[#3F5F86]/15 hover:border-[#E3A19C] shadow-[0_4px_20px_rgba(20,20,20,0.03)] hover:shadow-[0_16px_36px_rgba(46,139,232,0.10),0_4px_16px_rgba(227,161,156,0.15)] transition-all cursor-pointer group flex flex-col justify-between relative overflow-hidden"
               >
-                {/* Thin Gold Top Rule */}
-                <div className="absolute top-0 left-6 right-6 h-[2px] bg-[#C6A15B]/30 group-hover:bg-[#C6A15B] transition-colors" />
+                {/* Thin Sky-to-Pink-to-Gold Top Rule */}
+                <div className="absolute top-0 left-6 right-6 h-[2px] bg-gradient-to-r from-[#8DBDF0]/50 via-[#C6A15B]/50 to-[#E3A19C]/50 group-hover:from-[#2E8BE8] group-hover:via-[#C6A15B] group-hover:to-[#E3A19C] transition-all duration-300" />
 
                 <div className="space-y-4 pt-1">
-                  <div className="w-10 h-10 rounded-xl bg-[#EBF3FB] text-[#C6A15B] flex items-center justify-center transition-transform duration-200 group-hover:scale-105 border border-[#3F5F86]/10">
+                  <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#EBF3FB] to-[#FDF2F0] text-[#C6A15B] flex items-center justify-center transition-transform duration-200 group-hover:scale-105 border border-[#8DBDF0]/20 group-hover:border-[#E3A19C]/40">
                     <Icon className="w-5 h-5 text-[#C6A15B]" />
                   </div>
                   
@@ -124,12 +130,18 @@ export const Expertise: React.FC<ExpertiseProps> = ({ onOpenConsultation }) => {
                     {item.description}
                   </p>
 
-                  {/* 3 Tags */}
+                  {/* 3 Tags with Delicate Brand Colors */}
                   <div className="pt-2 flex flex-col gap-1.5">
                     {item.tags.map((tag, tagIdx) => (
                       <span
                         key={tagIdx}
-                        className="text-[11px] font-medium text-[#3F5F86] bg-[#EBF3FB]/80 px-2.5 py-1 rounded-md border border-[#3F5F86]/10"
+                        className={`text-[11px] font-medium px-2.5 py-1 rounded-md border transition-colors ${
+                          tagIdx === 0
+                            ? 'bg-[#EBF3FB]/90 text-[#2E8BE8] border-[#8DBDF0]/30'
+                            : tagIdx === 1
+                            ? 'bg-[#FDF2F0]/90 text-[#B85C55] border-[#E3A19C]/30'
+                            : 'bg-[#FAF5EA]/90 text-[#9E7D47] border-[#C6A15B]/30'
+                        }`}
                       >
                         {tag}
                       </span>

@@ -58,14 +58,19 @@ export const Ventures: React.FC<VenturesProps> = ({ onOpenConsultation }) => {
   ];
 
   return (
-    <section id="ventures" className="min-h-screen flex flex-col justify-center py-24 lg:py-32 bg-[#EBF3FB] relative border-t border-[#3F5F86]/10">
-      <div className="max-w-7xl mx-auto px-6 lg:px-12 w-full">
+    <section id="ventures" className="min-h-screen flex flex-col justify-center py-24 lg:py-32 bg-[#EBF3FB] relative overflow-hidden">
+      {/* Signature Bluish & Pinkish Ambient Lighting */}
+      <div className="absolute top-0 left-0 right-0 h-[1.5px] bg-gradient-to-r from-transparent via-[#8DBDF0]/55 via-[#E3A19C]/45 to-transparent z-10" />
+      <div className="absolute top-1/4 -right-20 w-[480px] h-[480px] rounded-full bg-gradient-to-bl from-[#E3A19C]/20 via-[#EBC9B5]/15 to-transparent blur-3xl pointer-events-none" />
+      <div className="absolute bottom-1/4 -left-20 w-[480px] h-[480px] rounded-full bg-gradient-to-tr from-[#8DBDF0]/25 via-[#2E8BE8]/10 to-transparent blur-3xl pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto px-6 lg:px-12 w-full relative z-10">
         
         {/* Header */}
         <div className="text-center max-w-4xl mx-auto mb-16 lg:mb-20 space-y-4">
           <h2 className="text-3xl sm:text-5xl lg:text-[54px] font-serif font-light text-[#141414] tracking-normal leading-[1.38] mx-auto">
             <span className="block mb-1 sm:mb-2">Breakthrough Innovations</span>
-            <span className="block text-[#141414]">Scaled to Market Leadership.</span>
+            <span className="block font-serif font-normal text-[#2E8BE8]">Scaled to Market Leadership.</span>
           </h2>
           <p className="text-sm sm:text-base text-[#3F5F86] font-normal leading-relaxed pt-1">
             Innovations we have strategised, funded and protected.
@@ -82,14 +87,14 @@ export const Ventures: React.FC<VenturesProps> = ({ onOpenConsultation }) => {
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: index * 0.05 }}
               onClick={() => onOpenConsultation(`Case Inquiry: ${venture.title}`)}
-              className="bg-white rounded-2xl p-7 sm:p-8 border border-[#3F5F86]/15 hover:border-[#E3A19C] shadow-[0_4px_20px_rgba(20,20,20,0.03)] hover:shadow-[0_12px_32px_rgba(20,20,20,0.07)] transition-all cursor-pointer group flex flex-col justify-between relative overflow-hidden"
+              className="bg-white rounded-2xl p-7 sm:p-8 border border-[#3F5F86]/15 hover:border-[#E3A19C] shadow-[0_4px_20px_rgba(20,20,20,0.03)] hover:shadow-[0_16px_36px_rgba(46,139,232,0.08),0_4px_16px_rgba(227,161,156,0.12)] transition-all cursor-pointer group flex flex-col justify-between relative overflow-hidden"
             >
-              {/* Thin Gold Top Rule */}
-              <div className="absolute top-0 left-6 right-6 h-[2px] bg-[#C6A15B]/30 group-hover:bg-[#C6A15B] transition-colors" />
+              {/* Thin sky-to-gold-to-pink top rule */}
+              <div className="absolute top-0 left-6 right-6 h-[2px] bg-gradient-to-r from-[#8DBDF0]/40 via-[#C6A15B]/50 to-[#E3A19C]/40 group-hover:from-[#2E8BE8] group-hover:via-[#C6A15B] group-hover:to-[#E3A19C] transition-all duration-300" />
 
               <div className="space-y-4">
-                {/* Sector tag (gold small caps) */}
-                <div className="text-[11px] font-bold uppercase tracking-[0.08em] text-[#C6A15B]">
+                {/* Sector tag (gold to blush small caps) */}
+                <div className="text-[11px] font-bold uppercase tracking-[0.08em] text-[#C6A15B] group-hover:text-[#B85C55] transition-colors">
                   {venture.sector}
                 </div>
 

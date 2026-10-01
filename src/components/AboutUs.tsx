@@ -59,9 +59,12 @@ export const AboutUs: React.FC = () => {
   const [showDisclaimer, setShowDisclaimer] = useState(false);
 
   return (
-    <section id="about" className="min-h-[75vh] flex flex-col justify-center py-24 lg:py-32 bg-[#EBF3FB] border-y border-[#3F5F86]/10 relative overflow-hidden">
-      {/* Background Soft Warm Light */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] bg-[#F4EAD5]/30 rounded-full blur-3xl pointer-events-none" />
+    <section id="about" className="min-h-[75vh] flex flex-col justify-center py-24 lg:py-32 bg-white relative overflow-hidden">
+      {/* Signature Bluish & Pinkish Ethereal Atmosphere */}
+      <div className="absolute top-0 left-0 right-0 h-[1.5px] bg-gradient-to-r from-transparent via-[#8DBDF0]/60 via-[#E3A19C]/50 to-transparent z-10" />
+      <div className="absolute top-8 -left-20 w-[450px] h-[450px] rounded-full bg-gradient-to-br from-[#8DBDF0]/22 via-[#2E8BE8]/8 to-transparent blur-3xl pointer-events-none" />
+      <div className="absolute bottom-8 -right-20 w-[450px] h-[450px] rounded-full bg-gradient-to-tl from-[#E3A19C]/18 via-[#EBC9B5]/15 to-transparent blur-3xl pointer-events-none" />
+      <div className="absolute bottom-0 left-0 right-0 h-[1.5px] bg-gradient-to-r from-transparent via-[#E3A19C]/45 via-[#8DBDF0]/55 to-transparent z-10" />
 
       <div className="max-w-5xl mx-auto px-6 lg:px-12 relative z-10 text-center w-full">
         
@@ -107,7 +110,7 @@ export const AboutUs: React.FC = () => {
             </div>
           </div>
           
-          <div className="w-[1px] h-12 bg-[#3F5F86]/20 hidden sm:block" />
+          <div className="w-[1px] h-12 bg-gradient-to-b from-[#8DBDF0]/40 via-[#C6A15B]/30 to-[#E3A19C]/40 hidden sm:block" />
           
           <div className="text-center min-w-[140px] relative">
             <AnimatedStat

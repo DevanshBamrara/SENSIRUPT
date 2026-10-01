@@ -59,7 +59,7 @@
 
   .editorial-card:hover {
     border-color: #E3A19C;
-    box-shadow: 0 12px 30px -4px rgba(20, 20, 20, 0.08);
+    box-shadow: 0 16px 36px -4px rgba(46, 139, 232, 0.10), 0 6px 20px -2px rgba(227, 161, 156, 0.15);
     transform: translateY(-2px);
   }
 

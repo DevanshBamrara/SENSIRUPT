@@ -28,7 +28,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenConsultation }) => {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled
-          ? 'bg-white/95 backdrop-blur-md border-b border-[#3F5F86]/10 py-3.5 shadow-sm'
+          ? 'bg-white/95 backdrop-blur-md border-b border-[#8DBDF0]/25 py-3.5 shadow-[0_4px_20px_rgba(46,139,232,0.06)]'
           : 'bg-transparent border-b border-transparent py-5'
         }`}
     >
@@ -60,7 +60,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenConsultation }) => {
         <div className="hidden md:flex items-center justify-end flex-1">
           <button
             onClick={() => onOpenConsultation("General Advisory Briefing")}
-            className="bg-white hover:bg-[#F4EAD5]/40 text-[#141414] border border-white/90 shadow-[0_2px_12px_rgba(0,0,0,0.06)] rounded-full px-5 py-2.5 text-[13px] font-semibold uppercase tracking-[0.06em] flex items-center gap-2 transition-all duration-200 hover:scale-[1.02] active:scale-95"
+            className="bg-white hover:bg-[#FDF2F0]/40 text-[#141414] border border-white/90 hover:border-[#E3A19C]/60 shadow-[0_2px_12px_rgba(46,139,232,0.12)] hover:shadow-[0_4px_16px_rgba(227,161,156,0.22)] rounded-full px-5 py-2.5 text-[13px] font-semibold uppercase tracking-[0.06em] flex items-center gap-2 transition-all duration-200 hover:scale-[1.02] active:scale-95"
           >
             <span>Book Briefing</span>
             <span className="text-[#2E8BE8] font-bold">→</span>

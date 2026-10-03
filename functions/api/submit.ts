@@ -66,9 +66,10 @@ export async function onRequestOptions(context: { request: Request }) {
   });
 }
 
-export async function onRequestPost(context: { request: Request; env: Env }) {
-  const { request, env } = context;
-  const origin = request.headers.get('Origin');
+export async function onRequestPost(context: { request: Request; env?: Env } | any) {
+  const request: Request = context.request || context;
+  const env: Env = context.env || (typeof context.RESEND_API_KEY !== 'undefined' ? context : {}) || {};
+  const origin = request.headers?.get?.('Origin') || null;
 
   if (!isAllowedOrigin(origin)) {
     return new Response(JSON.stringify({ error: 'Forbidden origin' }), {
@@ -124,9 +125,13 @@ export async function onRequestPost(context: { request: Request; env: Env }) {
     });
   }
 
-  const apiKey = env.RESEND_API_KEY;
+  const apiKey =
+    env.RESEND_API_KEY ||
+    (globalThis as any).RESEND_API_KEY ||
+    (typeof process !== 'undefined' ? process.env?.RESEND_API_KEY : undefined);
+
   if (!apiKey) {
-    console.error('Missing RESEND_API_KEY on server environment.');
+    console.error('Missing RESEND_API_KEY on server environment. Checked context.env, globalThis, and process.env.');
     return new Response(
       JSON.stringify({
         error: 'Email service configuration missing. Please add RESEND_API_KEY to environment variables.',

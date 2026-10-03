@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, CheckCircle2, ArrowRight, Lock } from 'lucide-react';
+import { X, CheckCircle2, ArrowRight, Lock, Loader2, AlertCircle } from 'lucide-react';
+import { sendInquiry } from '@/lib/sendInquiry';
 
 interface ConsultationModalProps {
   isOpen: boolean;
@@ -17,6 +18,8 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({
   const [email, setEmail] = useState('');
   const [company, setCompany] = useState('');
   const [message, setMessage] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   useEffect(() => {
@@ -25,13 +28,31 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({
     }
   }, [initialTopic]);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitted(true);
+    setErrorMessage('');
+    setIsSubmitting(true);
+
+    const result = await sendInquiry({
+      name: fullName,
+      email,
+      company,
+      message,
+      practiceArea: initialTopic || 'Schedule Briefing',
+    });
+
+    setIsSubmitting(false);
+
+    if (result.success) {
+      setIsSubmitted(true);
+    } else {
+      setErrorMessage(result.error || 'Failed to dispatch inquiry. Please try again.');
+    }
   };
 
   const handleReset = () => {
     setIsSubmitted(false);
+    setErrorMessage('');
     onClose();
   };
 
@@ -127,13 +148,30 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({
                   />
                 </div>
 
+                {errorMessage && (
+                  <div className="flex items-center gap-2 text-xs text-red-600 bg-red-50 border border-red-200 p-3 rounded-xl">
+                    <AlertCircle className="w-4 h-4 shrink-0 text-red-600" />
+                    <span>{errorMessage}</span>
+                  </div>
+                )}
+
                 <div className="pt-2">
                   <button
                     type="submit"
-                    className="w-full bg-[#141414] hover:bg-black text-white py-3.5 rounded-full text-xs font-bold uppercase tracking-[0.06em] flex items-center justify-center gap-2 shadow-md transition-all hover:scale-[1.01] active:scale-98"
+                    disabled={isSubmitting}
+                    className="w-full bg-[#141414] hover:bg-black disabled:bg-[#3F5F86]/60 text-white py-3.5 rounded-full text-xs font-bold uppercase tracking-[0.06em] flex items-center justify-center gap-2 shadow-md transition-all hover:scale-[1.01] active:scale-98 disabled:pointer-events-none"
                   >
-                    <span>Submit Confidential Inquiry</span>
-                    <ArrowRight className="w-4 h-4 text-[#C6A15B]" />
+                    {isSubmitting ? (
+                      <>
+                        <Loader2 className="w-4 h-4 animate-spin text-[#C6A15B]" />
+                        <span>Dispatching Inquiry…</span>
+                      </>
+                    ) : (
+                      <>
+                        <span>Submit Confidential Inquiry</span>
+                        <ArrowRight className="w-4 h-4 text-[#C6A15B]" />
+                      </>
+                    )}
                   </button>
                 </div>
 

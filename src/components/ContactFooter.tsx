@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { MapPin, Mail, Phone, Lock, CheckCircle2 } from 'lucide-react';
+import { MapPin, Mail, Phone, Lock, CheckCircle2, Loader2, AlertCircle } from 'lucide-react';
+import { sendInquiry } from '@/lib/sendInquiry';
 
 interface ContactFooterProps {
   onOpenConsultation: (topic?: string) => void;
@@ -14,12 +15,23 @@ export const ContactFooter: React.FC<ContactFooterProps> = ({ onOpenConsultation
     message: '',
     honeypot: '',
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
   const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (formState.honeypot) return; // Silent discard for bot submission
-    setSubmitted(true);
+    setErrorMessage('');
+    setIsSubmitting(true);
+
+    const result = await sendInquiry(formState);
+    setIsSubmitting(false);
+
+    if (result.success) {
+      setSubmitted(true);
+    } else {
+      setErrorMessage(result.error || 'Failed to dispatch inquiry. Please try again.');
+    }
   };
 
   return (
@@ -203,13 +215,30 @@ export const ContactFooter: React.FC<ContactFooterProps> = ({ onOpenConsultation
                   />
                 </div>
 
+                {errorMessage && (
+                  <div className="flex items-center gap-2 text-xs text-red-600 bg-red-50 border border-red-200 p-3 rounded-xl">
+                    <AlertCircle className="w-4 h-4 shrink-0 text-red-600" />
+                    <span>{errorMessage}</span>
+                  </div>
+                )}
+
                 <div className="pt-2">
                   <button
                     type="submit"
-                    className="w-full bg-[#141414] hover:bg-black text-white py-3.5 rounded-full text-xs font-bold uppercase tracking-[0.06em] flex items-center justify-center gap-2 shadow-sm transition-all hover:scale-[1.01] active:scale-98"
+                    disabled={isSubmitting}
+                    className="w-full bg-[#141414] hover:bg-black disabled:bg-[#3F5F86]/60 text-white py-3.5 rounded-full text-xs font-bold uppercase tracking-[0.06em] flex items-center justify-center gap-2 shadow-sm transition-all hover:scale-[1.01] active:scale-98 disabled:pointer-events-none"
                   >
-                    <span>Send Confidential Request</span>
-                    <span className="text-[#C6A15B] font-bold">→</span>
+                    {isSubmitting ? (
+                      <>
+                        <Loader2 className="w-4 h-4 animate-spin text-[#C6A15B]" />
+                        <span>Dispatching Request…</span>
+                      </>
+                    ) : (
+                      <>
+                        <span>Send Confidential Request</span>
+                        <span className="text-[#C6A15B] font-bold">→</span>
+                      </>
+                    )}
                   </button>
                 </div>
 

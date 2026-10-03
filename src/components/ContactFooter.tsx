@@ -18,7 +18,6 @@ export const ContactFooter: React.FC<ContactFooterProps> = ({ onOpenConsultation
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [submitted, setSubmitted] = useState(false);
-  const [refCode, setRefCode] = useState('');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -29,7 +28,6 @@ export const ContactFooter: React.FC<ContactFooterProps> = ({ onOpenConsultation
     setIsSubmitting(false);
 
     if (result.success) {
-      if (result.ref) setRefCode(result.ref);
       setSubmitted(true);
     } else {
       setErrorMessage(result.error || 'Failed to dispatch inquiry. Please try again.');
@@ -254,14 +252,9 @@ export const ContactFooter: React.FC<ContactFooterProps> = ({ onOpenConsultation
                 <div className="w-14 h-14 rounded-full bg-white border border-[#3F5F86]/20 flex items-center justify-center mx-auto text-[#2E8BE8]">
                   <CheckCircle2 className="w-7 h-7 text-[#2E8BE8]" />
                 </div>
-                <h4 className="text-2xl font-serif font-bold text-[#141414]">Briefing Request Dispatched</h4>
-                {refCode && (
-                  <div className="inline-block px-3 py-1 bg-white border border-[#2E8BE8]/30 rounded-full text-xs font-mono font-bold text-[#2E8BE8]">
-                    Ref #{refCode}
-                  </div>
-                )}
+                <h4 className="text-2xl font-serif font-bold text-[#141414]">Message Received</h4>
                 <p className="text-sm text-[#3F5F86] max-w-sm mx-auto leading-relaxed">
-                  Thank you, <strong>{formState.name}</strong>. A confirmation receipt has been sent to <strong>{formState.email}</strong>. Our senior advisory desk is conducting conflict checks and will respond within 24 hours.
+                  Thank you, <strong>{formState.name}</strong>. We have received your inquiry and a confirmation email has been sent to <strong>{formState.email}</strong>. Our advisory team will get back to you within 24 hours.
                 </p>
                 <div className="pt-2">
                   <button
@@ -275,7 +268,6 @@ export const ContactFooter: React.FC<ContactFooterProps> = ({ onOpenConsultation
                         message: '',
                         website: '',
                       });
-                      setRefCode('');
                     }}
                     className="bg-[#141414] text-white hover:bg-black px-6 py-2.5 rounded-full text-xs font-bold uppercase tracking-[0.06em] transition-colors"
                   >

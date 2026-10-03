@@ -22,7 +22,6 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [refCode, setRefCode] = useState('');
 
   useEffect(() => {
     if (initialTopic) {
@@ -47,7 +46,6 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({
     setIsSubmitting(false);
 
     if (result.success) {
-      if (result.ref) setRefCode(result.ref);
       setIsSubmitted(true);
     } else {
       setErrorMessage(result.error || 'Failed to dispatch inquiry. Please try again.');
@@ -62,7 +60,6 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({
     setCompany('');
     setMessage('');
     setWebsite('');
-    setRefCode('');
     onClose();
   };
 
@@ -210,18 +207,12 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({
               </div>
 
               <h3 className="text-2xl sm:text-3xl font-serif font-bold text-slate-900">
-                Inquiry Received
+                Message Received
               </h3>
 
               <p className="text-sm font-medium text-slate-600 max-w-md mx-auto leading-relaxed">
-                Thank you, <strong className="text-slate-900">{fullName || "Innovator"}</strong>. A confirmation receipt has been dispatched to <strong className="text-slate-900">{email}</strong>. Our senior partners are reviewing your inquiry. Expect a direct confidential response within 24 hours.
+                Thank you, <strong className="text-slate-900">{fullName || "there"}</strong>. We have received your message and a confirmation email has been sent to <strong className="text-slate-900">{email}</strong>. Our advisory team will review your inquiry and get back to you within 24 hours.
               </p>
-
-              <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200 max-w-md mx-auto text-left text-xs space-y-1">
-                <div className="text-[10px] uppercase font-bold text-[#0284C7]">Assigned Advisory Desk</div>
-                <div className="font-bold text-slate-900 text-sm">Boutique Techno-Legal Strategy Group</div>
-                <div className="text-slate-500 text-xs">Conflict Check Ref: #{refCode || 'SR-CONFIDENTIAL'}</div>
-              </div>
 
               <div className="pt-4">
                 <button

@@ -10,16 +10,16 @@
     </linearGradient>
   </defs>
 
-  <!-- Background Squircle with Subtle Border -->
+  <!-- Background Squircle with Subtle Brand Border -->
   <rect width="512" height="512" rx="128" fill="url(#bgGrad)" />
-  <rect x="8" y="8" width="496" height="496" rx="120" fill="none" stroke="rgba(141, 189, 240, 0.2)" stroke-width="8" />
+  <rect x="8" y="8" width="496" height="496" rx="120" fill="none" stroke="rgba(141, 189, 240, 0.25)" stroke-width="8" />
 
   <!-- Monogram S with Period Dot -->
-  <g transform="translate(72, 8)">
-    <!-- Serif "S" letterform -->
-    <path d="M 235 155 C 235 130 205 118 165 118 C 112 118 72 142 66 186 L 118 192 C 122 165 142 154 165 154 C 188 154 200 164 200 178 C 200 194 186 204 150 215 C 100 230 65 252 65 298 C 65 348 108 376 166 376 C 228 376 272 346 276 295 L 222 289 C 218 322 195 338 166 338 C 138 338 123 324 123 303 C 123 283 138 274 176 261 C 228 243 235 212 235 155 Z" fill="#FFFFFF" />
+  <g transform="translate(54, 8)">
+    <!-- True Serif 'S' letterform (Proper orientation: top terminal at top-left, spine across to bottom-right) -->
+    <path d="M 107 155 C 107 130 137 118 177 118 C 230 118 270 142 276 186 L 224 192 C 220 165 200 154 177 154 C 154 154 142 164 142 178 C 142 194 156 204 192 215 C 242 230 277 252 277 298 C 277 348 234 376 176 376 C 114 376 70 346 66 295 L 120 289 C 124 322 147 338 176 338 C 204 338 219 324 219 303 C 219 283 204 274 166 261 C 114 243 107 212 107 155 Z" fill="#FFFFFF" />
     
-    <!-- Signature Electric Blue Period Dot "." -->
-    <circle cx="280" cy="348" r="24" fill="url(#dotGrad)" />
+    <!-- Signature Electric Blue Period Dot '.' -->
+    <circle cx="320" cy="348" r="24" fill="url(#dotGrad)" />
   </g>
 </svg>

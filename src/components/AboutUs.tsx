@@ -70,10 +70,10 @@ export const AboutUs: React.FC = () => {
         
         {/* Headline with generous line-height and clean spacing (no overlapping descenders, no italic) */}
         <motion.h2
-          initial={{ opacity: 0, y: 15 }}
+          initial={{ opacity: 0, y: 18 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          viewport={{ once: true, margin: '-40px' }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
           className="text-3xl sm:text-5xl lg:text-[54px] font-serif font-light text-[#141414] leading-[1.38] tracking-normal max-w-4xl mx-auto"
         >
           <span className="block mb-1 sm:mb-2">
@@ -86,10 +86,10 @@ export const AboutUs: React.FC = () => {
 
         {/* Verbatim Paragraph */}
         <motion.p
-          initial={{ opacity: 0, y: 15 }}
+          initial={{ opacity: 0, y: 18 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.1 }}
+          viewport={{ once: true, margin: '-40px' }}
+          transition={{ duration: 0.6, delay: 0.08, ease: [0.16, 1, 0.3, 1] }}
           className="mt-8 text-[17px] sm:text-[19px] text-[#3F5F86] max-w-3xl mx-auto font-normal leading-[1.7]"
         >
           Sensirupt is a boutique techno-legal advisory, founded by former directors of US multinationals. We give global founders, funds and corporates a single point of accountability across intellectual property, technology transactions and deal structuring. One integrated strategy fueling rapid value creation, not just filings.
@@ -97,10 +97,10 @@ export const AboutUs: React.FC = () => {
 
         {/* Hairline Divider & 3 Moving Animated Stats */}
         <motion.div
-          initial={{ opacity: 0, y: 15 }}
+          initial={{ opacity: 0, y: 18 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.2 }}
+          viewport={{ once: true, margin: '-40px' }}
+          transition={{ duration: 0.6, delay: 0.16, ease: [0.16, 1, 0.3, 1] }}
           className="mt-14 pt-12 border-t border-[#3F5F86]/15 max-w-3xl mx-auto flex flex-col sm:flex-row items-center justify-center gap-8 sm:gap-16"
         >
           <div className="text-center min-w-[140px]">

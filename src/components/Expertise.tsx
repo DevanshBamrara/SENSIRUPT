@@ -107,10 +107,10 @@ export const Expertise: React.FC<ExpertiseProps> = ({ onOpenConsultation }) => {
             return (
               <motion.div
                 key={item.id}
-                initial={{ opacity: 0, y: 15 }}
+                initial={{ opacity: 0, y: 22 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: index * 0.05 }}
+                viewport={{ once: true, margin: '-40px' }}
+                transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1], delay: index * 0.08 }}
                 onClick={() => setSelectedItem(item)}
                 className="bg-white rounded-2xl p-7 border border-[#3F5F86]/15 hover:border-[#E3A19C] shadow-[0_4px_20px_rgba(20,20,20,0.03)] hover:shadow-[0_16px_36px_rgba(46,139,232,0.10),0_4px_16px_rgba(227,161,156,0.15)] transition-all cursor-pointer group flex flex-col justify-between relative overflow-hidden"
               >

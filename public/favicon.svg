@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#141414" />
+      <stop offset="100%" stop-color="#0B1528" />
+    </linearGradient>
+    <linearGradient id="dotGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2E8BE8" />
+      <stop offset="100%" stop-color="#8DBDF0" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background Squircle with Subtle Border -->
+  <rect width="512" height="512" rx="128" fill="url(#bgGrad)" />
+  <rect x="8" y="8" width="496" height="496" rx="120" fill="none" stroke="rgba(141, 189, 240, 0.2)" stroke-width="8" />
+
+  <!-- Monogram S with Period Dot -->
+  <g transform="translate(72, 8)">
+    <!-- Serif "S" letterform -->
+    <path d="M 235 155 C 235 130 205 118 165 118 C 112 118 72 142 66 186 L 118 192 C 122 165 142 154 165 154 C 188 154 200 164 200 178 C 200 194 186 204 150 215 C 100 230 65 252 65 298 C 65 348 108 376 166 376 C 228 376 272 346 276 295 L 222 289 C 218 322 195 338 166 338 C 138 338 123 324 123 303 C 123 283 138 274 176 261 C 228 243 235 212 235 155 Z" fill="#FFFFFF" />
+    
+    <!-- Signature Electric Blue Period Dot "." -->
+    <circle cx="280" cy="348" r="24" fill="url(#dotGrad)" />
+  </g>
+</svg>

@@ -95,10 +95,10 @@ export const PracticeAreas: React.FC<PracticeAreasProps> = ({ onOpenConsultation
             return (
               <motion.div
                 key={domain.title}
-                initial={{ opacity: 0, y: 15 }}
+                initial={{ opacity: 0, y: 22 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: (index % 3) * 0.08 }}
+                viewport={{ once: true, margin: '-40px' }}
+                transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1], delay: (index % 3) * 0.09 }}
                 onClick={() => onOpenConsultation(`Practice Inquiry: ${domain.title}`)}
                 className="bg-white rounded-2xl p-7 border border-[#3F5F86]/15 hover:border-[#E3A19C] shadow-[0_4px_20px_rgba(20,20,20,0.03)] hover:shadow-[0_16px_36px_rgba(46,139,232,0.08),0_4px_16px_rgba(227,161,156,0.12)] transition-all cursor-pointer group flex flex-col justify-between relative overflow-hidden"
               >

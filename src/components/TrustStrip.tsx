@@ -35,10 +35,10 @@ export const TrustStrip: React.FC = () => {
             return (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 10 }}
+                initial={{ opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.08 }}
+                viewport={{ once: true, margin: '-30px' }}
+                transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1], delay: (index % 4) * 0.07 }}
                 className={`flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-4 ${
                   index !== 0 ? 'md:pl-8' : ''
                 }`}

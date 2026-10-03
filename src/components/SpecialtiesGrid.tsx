@@ -171,10 +171,10 @@ export const SpecialtiesGrid: React.FC<SpecialtiesGridProps> = ({ onOpenConsulta
             return (
               <motion.div
                 key={item.id}
-                initial={{ opacity: 0, y: 15 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: index * 0.04 }}
+                viewport={{ once: true, margin: '-40px' }}
+                transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1], delay: (index % 3) * 0.08 }}
               >
                 <div
                   onClick={() => setActiveModal(item)}

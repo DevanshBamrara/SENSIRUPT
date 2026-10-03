@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, CheckCircle2, ArrowRight, Lock, Loader2, AlertCircle } from 'lucide-react';
-import { sendInquiry } from '@/lib/sendInquiry';
+import { submitInquiry } from '@/lib/sendInquiry';
 
 interface ConsultationModalProps {
   isOpen: boolean;
@@ -18,9 +18,11 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({
   const [email, setEmail] = useState('');
   const [company, setCompany] = useState('');
   const [message, setMessage] = useState('');
+  const [website, setWebsite] = useState(''); // Honeypot trap
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [refCode, setRefCode] = useState('');
 
   useEffect(() => {
     if (initialTopic) {
@@ -33,17 +35,19 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({
     setErrorMessage('');
     setIsSubmitting(true);
 
-    const result = await sendInquiry({
+    const result = await submitInquiry({
       name: fullName,
       email,
       company,
       message,
       practiceArea: initialTopic || 'Schedule Briefing',
+      website,
     });
 
     setIsSubmitting(false);
 
     if (result.success) {
+      if (result.ref) setRefCode(result.ref);
       setIsSubmitted(true);
     } else {
       setErrorMessage(result.error || 'Failed to dispatch inquiry. Please try again.');
@@ -53,6 +57,12 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({
   const handleReset = () => {
     setIsSubmitted(false);
     setErrorMessage('');
+    setFullName('');
+    setEmail('');
+    setCompany('');
+    setMessage('');
+    setWebsite('');
+    setRefCode('');
     onClose();
   };
 
@@ -93,6 +103,18 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({
 
               {/* Form */}
               <form onSubmit={handleSubmit} className="space-y-4">
+                {/* Honeypot field (hidden from legitimate users, catches bots) */}
+                <div style={{ position: 'absolute', left: '-9999px', top: '-9999px', opacity: 0, pointerEvents: 'none' }} aria-hidden="true">
+                  <input
+                    type="text"
+                    name="website"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    value={website}
+                    onChange={(e) => setWebsite(e.target.value)}
+                  />
+                </div>
+
                 <div>
                   <label className="block text-[11px] font-bold uppercase tracking-[0.06em] text-[#141414] mb-1.5">
                     Full Name <span className="text-red-500">*</span>
@@ -192,19 +214,19 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({
               </h3>
 
               <p className="text-sm font-medium text-slate-600 max-w-md mx-auto leading-relaxed">
-                Thank you, <strong className="text-slate-900">{fullName || "Innovator"}</strong>. Our senior partners are reviewing your inquiry. Expect a direct confidential response within 4 business hours.
+                Thank you, <strong className="text-slate-900">{fullName || "Innovator"}</strong>. A confirmation receipt has been dispatched to <strong className="text-slate-900">{email}</strong>. Our senior partners are reviewing your inquiry. Expect a direct confidential response within 4 business hours.
               </p>
 
               <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200 max-w-md mx-auto text-left text-xs space-y-1">
                 <div className="text-[10px] uppercase font-bold text-[#0284C7]">Assigned Advisory Desk</div>
                 <div className="font-bold text-slate-900 text-sm">Boutique Techno-Legal Strategy Group</div>
-                <div className="text-slate-500 text-xs">Conflict Check Ref: #SR-{Math.floor(100000 + Math.random() * 900000)}</div>
+                <div className="text-slate-500 text-xs">Conflict Check Ref: #{refCode || 'SR-CONFIDENTIAL'}</div>
               </div>
 
               <div className="pt-4">
                 <button
                   onClick={handleReset}
-                  className="bg-[#1A1A1A] text-white hover:bg-black rounded-full px-8 py-3.5 text-xs font-bold uppercase tracking-wider shadow-md"
+                  className="bg-[#1A1A1A] text-white hover:bg-black rounded-full px-8 py-3.5 text-xs font-bold uppercase tracking-wider shadow-md transition-colors"
                 >
                   Return to Page
                 </button>

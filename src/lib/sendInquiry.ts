@@ -1,25 +1,35 @@
 export interface InquiryPayload {
   name: string;
   email: string;
+  phone?: string;
   company?: string;
   practiceArea?: string;
   message?: string;
-  honeypot?: string;
+  website?: string; // Honeypot field (must stay empty)
 }
 
 export interface InquiryResult {
   success: boolean;
+  ref?: string;
   error?: string;
 }
 
-export async function sendInquiry(payload: InquiryPayload): Promise<InquiryResult> {
+export async function submitInquiry(payload: InquiryPayload): Promise<InquiryResult> {
   try {
-    const response = await fetch('/api/contact', {
+    const response = await fetch('/api/submit', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(payload),
+      body: JSON.stringify({
+        name: payload.name,
+        email: payload.email,
+        phone: payload.phone || '',
+        company: payload.company || '',
+        practiceArea: payload.practiceArea || '',
+        message: payload.message || '',
+        website: payload.website || '',
+      }),
     });
 
     const data = await response.json().catch(() => ({}));
@@ -28,7 +38,7 @@ export async function sendInquiry(payload: InquiryPayload): Promise<InquiryResul
       throw new Error(data.error || 'Failed to dispatch inquiry. Please try again.');
     }
 
-    return { success: true };
+    return { success: true, ref: data.ref };
   } catch (err: any) {
     console.error('Inquiry submission error:', err);
     return {
@@ -37,3 +47,5 @@ export async function sendInquiry(payload: InquiryPayload): Promise<InquiryResul
     };
   }
 }
+
+export const sendInquiry = submitInquiry;

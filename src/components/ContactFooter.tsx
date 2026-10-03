@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { MapPin, Mail, Phone, Lock, CheckCircle2, Loader2, AlertCircle } from 'lucide-react';
-import { sendInquiry } from '@/lib/sendInquiry';
+import { submitInquiry } from '@/lib/sendInquiry';
 
 interface ContactFooterProps {
   onOpenConsultation: (topic?: string) => void;
@@ -13,21 +13,23 @@ export const ContactFooter: React.FC<ContactFooterProps> = ({ onOpenConsultation
     company: '',
     practiceArea: 'IP Strategy & Valuation',
     message: '',
-    honeypot: '',
+    website: '',
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [submitted, setSubmitted] = useState(false);
+  const [refCode, setRefCode] = useState('');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setErrorMessage('');
     setIsSubmitting(true);
 
-    const result = await sendInquiry(formState);
+    const result = await submitInquiry(formState);
     setIsSubmitting(false);
 
     if (result.success) {
+      if (result.ref) setRefCode(result.ref);
       setSubmitted(true);
     } else {
       setErrorMessage(result.error || 'Failed to dispatch inquiry. Please try again.');
@@ -123,15 +125,15 @@ export const ContactFooter: React.FC<ContactFooterProps> = ({ onOpenConsultation
             <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[#2E8BE8] via-[#C6A15B] to-[#E3A19C]" />
             {!submitted ? (
               <form onSubmit={handleSubmit} className="space-y-4">
-                {/* Honeypot field (hidden from legitimate users) */}
-                <div className="hidden" aria-hidden="true">
+                {/* Honeypot field (hidden from legitimate users, catches bots) */}
+                <div style={{ position: 'absolute', left: '-9999px', top: '-9999px', opacity: 0, pointerEvents: 'none' }} aria-hidden="true">
                   <input
                     type="text"
-                    name="website_url"
+                    name="website"
                     tabIndex={-1}
                     autoComplete="off"
-                    value={formState.honeypot}
-                    onChange={(e) => setFormState({ ...formState, honeypot: e.target.value })}
+                    value={formState.website}
+                    onChange={(e) => setFormState({ ...formState, website: e.target.value })}
                   />
                 </div>
 
@@ -248,20 +250,38 @@ export const ContactFooter: React.FC<ContactFooterProps> = ({ onOpenConsultation
                 </div>
               </form>
             ) : (
-              <div className="text-center py-10 space-y-4">
+              <div className="text-center py-8 space-y-4">
                 <div className="w-14 h-14 rounded-full bg-white border border-[#3F5F86]/20 flex items-center justify-center mx-auto text-[#2E8BE8]">
                   <CheckCircle2 className="w-7 h-7 text-[#2E8BE8]" />
                 </div>
-                <h4 className="text-2xl font-serif font-bold text-[#141414]">Inquiry Received</h4>
+                <h4 className="text-2xl font-serif font-bold text-[#141414]">Briefing Request Dispatched</h4>
+                {refCode && (
+                  <div className="inline-block px-3 py-1 bg-white border border-[#2E8BE8]/30 rounded-full text-xs font-mono font-bold text-[#2E8BE8]">
+                    Ref #{refCode}
+                  </div>
+                )}
                 <p className="text-sm text-[#3F5F86] max-w-sm mx-auto leading-relaxed">
-                  Thank you, <strong>{formState.name}</strong>. Our senior advisory desk is reviewing your request with conflict checks.
+                  Thank you, <strong>{formState.name}</strong>. A confirmation receipt has been sent to <strong>{formState.email}</strong>. Our senior advisory desk is conducting conflict checks and will respond within 4 business hours.
                 </p>
-                <button
-                  onClick={() => setSubmitted(false)}
-                  className="bg-[#141414] text-white hover:bg-black px-6 py-2.5 rounded-full text-xs font-bold uppercase tracking-[0.06em]"
-                >
-                  Send Another Inquiry
-                </button>
+                <div className="pt-2">
+                  <button
+                    onClick={() => {
+                      setSubmitted(false);
+                      setFormState({
+                        name: '',
+                        email: '',
+                        company: '',
+                        practiceArea: 'IP Strategy & Valuation',
+                        message: '',
+                        website: '',
+                      });
+                      setRefCode('');
+                    }}
+                    className="bg-[#141414] text-white hover:bg-black px-6 py-2.5 rounded-full text-xs font-bold uppercase tracking-[0.06em] transition-colors"
+                  >
+                    Send Another Inquiry
+                  </button>
+                </div>
               </div>
             )}
           </div>

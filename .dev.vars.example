@@ -1,0 +1,6 @@
+# .dev.vars (Used for local testing with `npm run dev` or Cloudflare Wrangler)
+# Copy this file to .dev.vars (which is git-ignored) and paste your Resend API key:
+
+RESEND_API_KEY="re_your_resend_api_key_here"
+FIRM_EMAIL="info@sensirupt.com"
+SEND_FROM="Sensirupt Advisory <briefings@mail.sensirupt.com>"

@@ -27,3 +27,8 @@ dist-ssr
 .agents/
 docs/superpowers/
 
+# Local Environment Variables & Secrets
+.dev.vars
+.env
+.env.local
+

@@ -78,9 +78,37 @@ function localApiPlugin(): Plugin {
   };
 }
 
+function cloudflareSpaPlugin(): Plugin {
+  return {
+    name: 'cloudflare-spa-fallback',
+    closeBundle() {
+      // 1. Permanently remove dist/_redirects if restored by Cloudflare build cache
+      const redirectsPath = path.resolve(__dirname, 'dist/_redirects');
+      if (fs.existsSync(redirectsPath)) {
+        try {
+          fs.unlinkSync(redirectsPath);
+        } catch (e) {
+          console.warn('Could not delete dist/_redirects:', e);
+        }
+      }
+
+      // 2. Generate 200.html as official Cloudflare SPA fallback
+      const indexPath = path.resolve(__dirname, 'dist/index.html');
+      const fallbackPath = path.resolve(__dirname, 'dist/200.html');
+      if (fs.existsSync(indexPath)) {
+        try {
+          fs.copyFileSync(indexPath, fallbackPath);
+        } catch (e) {
+          console.warn('Could not create dist/200.html:', e);
+        }
+      }
+    },
+  };
+}
+
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react(), localApiPlugin()],
+  plugins: [react(), localApiPlugin(), cloudflareSpaPlugin()],
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),

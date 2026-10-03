@@ -95,3 +95,22 @@
     scroll-behavior: auto !important;
   }
 }
+
+/* Mobile Drawer Overlay and Floating Widget Suppression */
+body.mobile-drawer-open {
+  overflow: hidden !important;
+  touch-action: none;
+}
+
+body.mobile-drawer-open .floating-whatsapp-widget {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  transform: scale(0.85);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+/* Touch Action Optimization on mobile interactive elements */
+button, a, input, select, textarea {
+  touch-action: manipulation;
+}

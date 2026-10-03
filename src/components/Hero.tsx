@@ -103,11 +103,11 @@ export const Hero: React.FC<HeroProps> = ({ onOpenConsultation }) => {
                 onBlur={() => setIsFocused(false)}
                 onChange={(e) => setPromptInput(e.target.value)}
                 placeholder={isFocused ? "Type your inquiry…" : displayedPlaceholder || "Protect proprietary IP & assets…"}
-                className="w-full h-12 sm:h-14 pl-5 sm:pl-6 pr-36 sm:pr-44 bg-transparent text-[#141414] placeholder:text-[#3F5F86]/80 text-xs sm:text-sm md:text-base font-medium focus:outline-none transition-all truncate"
+                className="w-full min-w-0 h-12 sm:h-14 pl-4 sm:pl-6 pr-32 sm:pr-44 bg-transparent text-[#141414] placeholder:text-[#3F5F86]/80 text-xs sm:text-sm md:text-base font-medium focus:outline-none transition-all truncate"
               />
               <button
                 type="submit"
-                className="absolute right-1.5 top-1.5 bottom-1.5 bg-white hover:bg-[#F4EAD5]/40 text-[#141414] hover:text-[#2E8BE8] border border-white px-4 sm:px-6 rounded-full text-xs font-bold uppercase tracking-[0.06em] flex items-center gap-2 transition-all duration-200 hover:scale-[1.02] active:scale-95 shadow-sm shrink-0"
+                className="absolute right-1.5 top-1.5 bottom-1.5 bg-white hover:bg-[#F4EAD5]/40 text-[#141414] hover:text-[#2E8BE8] border border-white px-3.5 sm:px-6 rounded-full text-xs font-bold uppercase tracking-[0.06em] flex items-center gap-1.5 sm:gap-2 transition-all duration-200 hover:scale-[1.02] active:scale-95 shadow-sm shrink-0 whitespace-nowrap"
               >
                 <span>Book Briefing</span>
                 <span className="text-[#2E8BE8] font-bold text-sm">→</span>

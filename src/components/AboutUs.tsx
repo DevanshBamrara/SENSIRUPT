@@ -77,7 +77,7 @@ export const AboutUs: React.FC = () => {
           className="text-3xl sm:text-5xl lg:text-[54px] font-serif font-light text-[#141414] leading-[1.38] tracking-normal max-w-4xl mx-auto"
         >
           <span className="block mb-1 sm:mb-2">
-            Bridging <span className="font-serif font-normal">Silicon Valley Practice</span>
+            Bridging <span className="font-serif font-normal text-[#2E8BE8]">Silicon Valley Practice</span>
           </span>
           <span className="block text-[#141414]">
             with Global Deep-Tech Ingenuity.

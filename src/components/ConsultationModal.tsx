@@ -214,7 +214,7 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({
               </h3>
 
               <p className="text-sm font-medium text-slate-600 max-w-md mx-auto leading-relaxed">
-                Thank you, <strong className="text-slate-900">{fullName || "Innovator"}</strong>. A confirmation receipt has been dispatched to <strong className="text-slate-900">{email}</strong>. Our senior partners are reviewing your inquiry. Expect a direct confidential response within 4 business hours.
+                Thank you, <strong className="text-slate-900">{fullName || "Innovator"}</strong>. A confirmation receipt has been dispatched to <strong className="text-slate-900">{email}</strong>. Our senior partners are reviewing your inquiry. Expect a direct confidential response within 24 hours.
               </p>
 
               <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200 max-w-md mx-auto text-left text-xs space-y-1">

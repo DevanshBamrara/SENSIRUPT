@@ -18,7 +18,7 @@ interface InquiryBody {
 }
 
 const DEFAULT_FIRM_EMAIL = 'info@sensirupt.com';
-const DEFAULT_SEND_FROM = 'Sensirupt Advisory <briefings@mail.sensirupt.com>';
+const DEFAULT_SEND_FROM = 'Sensirupt Advisory <advisory@mail.sensirupt.com>';
 const PRIMARY_ORIGIN = 'https://sensirupt.com';
 
 function escapeHtml(str: string): string {
@@ -243,73 +243,178 @@ export async function onRequestPost(context: { request: Request; env: Env }) {
 </html>
   `;
 
-  // Email 2: Client Auto-Confirmation HTML (Editorial Ivory Letterhead)
+  // Email 2: Client Auto-Confirmation HTML (Bespoke Executive Dossier Style)
   const confirmHtml = `
 <!DOCTYPE html>
 <html>
-<head><meta charset="utf-8"><title>Inquiry Received - Sensirupt</title></head>
-<body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #F0F7FD; margin: 0; padding: 32px 16px; color: #141414;">
-  <table align="center" width="100%" cellpadding="0" cellspacing="0" style="max-width: 600px; background-color: #FFFFFF; border-radius: 16px; overflow: hidden; border: 1px solid rgba(63, 95, 134, 0.15); box-shadow: 0 10px 30px rgba(0,0,0,0.05);">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Briefing Request Received — Sensirupt Advisory</title>
+</head>
+<body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; background-color: #F0F7FD; margin: 0; padding: 40px 16px; color: #141414; -webkit-font-smoothing: antialiased;">
+  <table align="center" width="100%" cellpadding="0" cellspacing="0" style="max-width: 640px; margin: 0 auto; background-color: #FFFFFF; border-radius: 20px; overflow: hidden; border: 1px solid rgba(63, 95, 134, 0.16); box-shadow: 0 20px 48px rgba(46, 139, 232, 0.08), 0 4px 16px rgba(0, 0, 0, 0.03);">
     
-    <!-- Top Signature Brand Stripe -->
+    <!-- Top Signature Brand Stripe (Electric Blue -> Antique Gold -> Blush Rose) -->
     <tr>
       <td style="height: 6px; background: linear-gradient(90deg, #2E8BE8 0%, #C6A15B 50%, #E3A19C 100%);"></td>
     </tr>
 
-    <!-- Header -->
+    <!-- Header Section with Brand & Badge -->
     <tr>
-      <td style="padding: 32px 36px 20px 36px;">
-        <div style="font-size: 20px; font-weight: 900; letter-spacing: -0.03em; color: #141414; margin-bottom: 12px;">SENSIRUPT</div>
-        <span style="font-size: 11px; font-weight: bold; letter-spacing: 0.08em; text-transform: uppercase; color: #C6A15B;">Confidential Briefing Receipt · Ref #${refCode}</span>
-        <h1 style="font-size: 24px; font-weight: 700; color: #141414; margin: 6px 0 0 0; letter-spacing: -0.02em;">We Have Received Your Inquiry</h1>
+      <td style="padding: 36px 40px 24px 40px;">
+        <table width="100%" cellpadding="0" cellspacing="0">
+          <tr>
+            <td>
+              <div style="font-size: 22px; font-weight: 900; letter-spacing: -0.03em; color: #141414; line-height: 1;">SENSIRUPT</div>
+              <div style="font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #3F5F86; margin-top: 6px;">Boutique Techno-Legal Advisory</div>
+            </td>
+            <td align="right" valign="top">
+              <span style="display: inline-block; background-color: #FAF4EB; color: #9A7B38; font-size: 11px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; padding: 6px 14px; border-radius: 50px; border: 1px solid rgba(198, 161, 91, 0.35);">
+                Ref #${refCode}
+              </span>
+            </td>
+          </tr>
+        </table>
+        
+        <div style="margin-top: 28px;">
+          <h1 style="font-size: 26px; font-weight: 700; color: #141414; margin: 0; letter-spacing: -0.02em; line-height: 1.3;">
+            We Have Received Your Briefing Request.
+          </h1>
+          <p style="font-size: 15px; color: #3F5F86; margin: 8px 0 0 0; line-height: 1.6;">
+            A senior advisory partner is reviewing your submission under professional privilege.
+          </p>
+        </div>
       </td>
     </tr>
 
-    <!-- Divider -->
+    <!-- Subtle Hairline Divider -->
     <tr>
-      <td style="padding: 0 36px;"><div style="height: 1px; background-color: rgba(63, 95, 134, 0.12);"></div></td>
+      <td style="padding: 0 40px;"><div style="height: 1px; background-color: rgba(63, 95, 134, 0.12);"></div></td>
     </tr>
 
-    <!-- Body Copy -->
+    <!-- Courteous Narrative & Salutation -->
     <tr>
-      <td style="padding: 24px 36px; font-size: 15px; line-height: 1.7; color: #334155;">
-        <p style="margin-top: 0;">Dear ${safeName},</p>
-        <p>Thank you for reaching out to <strong>Sensirupt</strong>. Your briefing inquiry has been securely routed to our senior techno-legal partners.</p>
-        <p>All inquiries undergo strict internal conflict-checking against existing portfolio matters and are handled under strict confidentiality covenants.</p>
-        
-        <!-- Snapshot of Submitted Scope -->
-        <div style="background-color: #FAF8F5; border-left: 3px solid #C6A15B; padding: 14px 18px; border-radius: 4px; margin: 20px 0; font-size: 14px;">
-          <div style="font-size: 11px; font-weight: bold; text-transform: uppercase; color: #3F5F86; margin-bottom: 4px;">Requested Advisory Scope:</div>
-          <div style="color: #141414; font-weight: 600;">${safePractice}</div>
-          ${company.trim() ? `<div style="color: #64748B; font-size: 13px; margin-top: 2px;">Organization: ${safeCompany}</div>` : ''}
+      <td style="padding: 28px 40px 20px 40px; font-size: 15px; line-height: 1.7; color: #2D3748;">
+        <p style="margin: 0 0 16px 0;">Dear <strong>${safeName}</strong>,</p>
+        <p style="margin: 0 0 16px 0;">
+          Thank you for entrusting <strong>Sensirupt</strong> with your strategic advisory inquiry. As a boutique firm founded by former directors of US multinationals, we understand the critical, proprietary nature of the technologies and commercial transactions you build and govern.
+        </p>
+        <p style="margin: 0 0 20px 0;">
+          Your request has been logged into our confidential executive queue. Below is the confirmation record of the brief you submitted:
+        </p>
+
+        <!-- Executive Record Card -->
+        <table width="100%" cellpadding="0" cellspacing="0" style="background-color: #F8FAFD; border: 1px solid rgba(141, 189, 240, 0.35); border-left: 4px solid #2E8BE8; border-radius: 12px; margin-bottom: 24px;">
+          <tr>
+            <td style="padding: 20px 24px;">
+              <table width="100%" cellpadding="0" cellspacing="0" style="font-size: 14px; line-height: 1.6;">
+                <tr>
+                  <td width="36%" style="color: #64748B; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; padding-bottom: 8px;">Advisory Practice</td>
+                  <td width="64%" style="color: #141414; font-weight: 700; padding-bottom: 8px;">
+                    <span style="display: inline-block; background-color: #EBF3FB; color: #2E8BE8; font-size: 12px; font-weight: 700; padding: 3px 10px; border-radius: 6px; border: 1px solid rgba(46, 139, 232, 0.25);">
+                      ${safePractice}
+                    </span>
+                  </td>
+                </tr>
+                ${company.trim() ? `
+                <tr>
+                  <td style="color: #64748B; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; padding-bottom: 8px;">Organization / Fund</td>
+                  <td style="color: #141414; font-weight: 600; padding-bottom: 8px;">${safeCompany}</td>
+                </tr>` : ''}
+                <tr>
+                  <td style="color: #64748B; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; padding-bottom: 8px;">Registered Contact</td>
+                  <td style="color: #141414; font-weight: 600; padding-bottom: 8px;">${safeEmail}</td>
+                </tr>
+                <tr>
+                  <td valign="top" style="color: #64748B; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; padding-top: 4px;">Inquiry Scope</td>
+                  <td style="color: #334155; font-size: 13.5px; line-height: 1.6; padding-top: 4px;">${safeMessage}</td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+
+        <!-- 3-Stage Executive Review Protocol -->
+        <div style="font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; color: #C6A15B; margin-bottom: 14px;">
+          Our 3-Stage Advisory Protocol
         </div>
 
-        <p><strong>What to expect next:</strong></p>
-        <ol style="padding-left: 20px; margin: 12px 0; color: #475569;">
-          <li style="margin-bottom: 8px;"><strong>Conflict Screening:</strong> We verify independence across relevant technology and asset classes.</li>
-          <li style="margin-bottom: 8px;"><strong>Senior Assessment:</strong> An advisory director with deep US multinational and deep-tech experience reviews your technical brief.</li>
-          <li><strong>Direct Response:</strong> You will receive a confidential briefing slot confirmation within 4 business hours.</li>
-        </ol>
+        <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 24px;">
+          <!-- Step 1 -->
+          <tr>
+            <td width="36" valign="top" style="padding-bottom: 16px;">
+              <div style="width: 26px; height: 26px; border-radius: 50%; background-color: #EBF3FB; color: #2E8BE8; font-size: 12px; font-weight: 800; text-align: center; line-height: 26px; border: 1px solid rgba(46, 139, 232, 0.3);">1</div>
+            </td>
+            <td valign="top" style="padding-bottom: 16px; padding-left: 8px;">
+              <div style="font-size: 14px; font-weight: 700; color: #141414;">Conflict of Interest Clearance</div>
+              <div style="font-size: 13px; color: #475569; margin-top: 3px; line-height: 1.5;">
+                We verify our current portfolio to guarantee complete independence and alignment under strict professional non-disclosure covenants.
+              </div>
+            </td>
+          </tr>
 
-        <p style="margin-bottom: 0;">If your transaction or diligence timeline is time-critical, you may also message our desk directly on WhatsApp:</p>
+          <!-- Step 2 -->
+          <tr>
+            <td width="36" valign="top" style="padding-bottom: 16px;">
+              <div style="width: 26px; height: 26px; border-radius: 50%; background-color: #FAF4EB; color: #C6A15B; font-size: 12px; font-weight: 800; text-align: center; line-height: 26px; border: 1px solid rgba(198, 161, 91, 0.4);">2</div>
+            </td>
+            <td valign="top" style="padding-bottom: 16px; padding-left: 8px;">
+              <div style="font-size: 14px; font-weight: 700; color: #141414;">Partner-Led Technical Assessment</div>
+              <div style="font-size: 13px; color: #475569; margin-top: 3px; line-height: 1.5;">
+                An advisory director with deep US multinational and deep-tech experience conducts a preliminary review of your technological scope and transaction goals.
+              </div>
+            </td>
+          </tr>
+
+          <!-- Step 3 -->
+          <tr>
+            <td width="36" valign="top">
+              <div style="width: 26px; height: 26px; border-radius: 50%; background-color: #FDF2F0; color: #E3A19C; font-size: 12px; font-weight: 800; text-align: center; line-height: 26px; border: 1px solid rgba(227, 161, 156, 0.5);">3</div>
+            </td>
+            <td valign="top" style="padding-left: 8px;">
+              <div style="font-size: 14px; font-weight: 700; color: #141414;">Direct Partner Briefing Slot (Within 24 Hours)</div>
+              <div style="font-size: 13px; color: #475569; margin-top: 3px; line-height: 1.5;">
+                You will receive a confidential briefing slot confirmation and implementation roadmap directly from a partner within <strong>24 hours</strong>.
+              </div>
+            </td>
+          </tr>
+        </table>
+
+        <!-- Time-Critical Deal Callout -->
+        <table width="100%" cellpadding="0" cellspacing="0" style="background-color: #FAF8F5; border: 1px solid rgba(198, 161, 91, 0.25); border-radius: 12px; margin-bottom: 24px;">
+          <tr>
+            <td style="padding: 16px 20px;">
+              <div style="font-size: 13.5px; line-height: 1.6; color: #334155;">
+                <strong>Time-Sensitive Diligence or M&A Timeline?</strong> If your matter involves an active financing round, critical filing deadline, or cross-border transaction, connect directly with our partner desk via WhatsApp:
+              </div>
+              <div style="margin-top: 12px;">
+                <a href="https://wa.me/917827963285?text=${encodeURIComponent(`Hello Sensirupt Team, following up on inquiry ref #${refCode} (${safeName}).`)}" target="_blank" style="display: inline-block; background-color: #25D366; color: #FFFFFF; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; text-decoration: none; padding: 10px 20px; border-radius: 50px;">
+                  Connect on WhatsApp (+91 78279 63285) &rarr;
+                </a>
+              </div>
+            </td>
+          </tr>
+        </table>
+
+        <!-- Sign-off -->
+        <p style="margin: 24px 0 4px 0; color: #3F5F86; font-size: 14px;">With our highest professional regards,</p>
+        <p style="margin: 0; font-size: 15px; font-weight: 800; color: #141414;">Senior Advisory Partners</p>
+        <p style="margin: 2px 0 0 0; font-size: 12.5px; color: #64748B;">Sensirupt Advisory Desk · Silicon Valley Practice & Deep-Tech Strategy</p>
       </td>
     </tr>
 
-    <!-- WhatsApp Escalation Button -->
+    <!-- Footer Section -->
     <tr>
-      <td style="padding: 0 36px 28px 36px;">
-        <a href="https://wa.me/917827963285?text=${encodeURIComponent(`Hello Sensirupt Team, following up on inquiry ref #${refCode} (${safeName}).`)}" target="_blank" style="display: inline-block; background-color: #25D366; color: #FFFFFF; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; text-decoration: none; padding: 12px 22px; border-radius: 50px;">
-          Connect on WhatsApp (+91 78279 63285) &rarr;
-        </a>
-      </td>
-    </tr>
-
-    <!-- Signature & Office Info -->
-    <tr>
-      <td style="padding: 20px 36px 28px 36px; background-color: #F8FAFC; border-top: 1px solid rgba(63, 95, 134, 0.1); font-size: 12px; color: #3F5F86; line-height: 1.6;">
-        <p style="margin: 0; font-weight: 600; color: #141414;">Sensirupt Advisory Desk</p>
-        <p style="margin: 2px 0 0 0; color: #64748B;">Boutique Techno-Legal & Intellectual Property Strategy</p>
-        <p style="margin: 6px 0 0 0; font-size: 11px; color: #94A3B8;">20th Floor, Galaxy Blue Sapphire Plaza, Sector 4, Noida, UP - 201309 · Direct: <a href="mailto:info@sensirupt.com" style="color: #2E8BE8; text-decoration: none;">info@sensirupt.com</a></p>
+      <td style="padding: 24px 40px; background-color: #F8FAFC; border-top: 1px solid rgba(63, 95, 134, 0.1); font-size: 12px; color: #64748B; line-height: 1.6;">
+        <div style="font-weight: 700; color: #141414; margin-bottom: 4px;">Sensirupt Advisory</div>
+        <div>20th Floor, Galaxy Blue Sapphire Plaza, Sector 4, Noida, UP - 201309</div>
+        <div style="margin-top: 4px;">
+          Direct: <a href="mailto:info@sensirupt.com" style="color: #2E8BE8; text-decoration: none; font-weight: 600;">info@sensirupt.com</a> · WhatsApp: <a href="https://wa.me/917827963285" style="color: #2E8BE8; text-decoration: none; font-weight: 600;">+91 78279 63285</a>
+        </div>
+        <div style="margin-top: 14px; padding-top: 12px; border-top: 1px dashed rgba(63, 95, 134, 0.15); font-size: 10.5px; color: #94A3B8; line-height: 1.5;">
+          CONFIDENTIALITY NOTICE: This transmission is intended solely for the recipient named above. It contains information that is strictly confidential, legally privileged, and exempt from disclosure under applicable international law. If you have received this transmission in error, please notify us immediately and delete all copies.
+        </div>
       </td>
     </tr>
   </table>

@@ -261,7 +261,7 @@ export const ContactFooter: React.FC<ContactFooterProps> = ({ onOpenConsultation
                   </div>
                 )}
                 <p className="text-sm text-[#3F5F86] max-w-sm mx-auto leading-relaxed">
-                  Thank you, <strong>{formState.name}</strong>. A confirmation receipt has been sent to <strong>{formState.email}</strong>. Our senior advisory desk is conducting conflict checks and will respond within 4 business hours.
+                  Thank you, <strong>{formState.name}</strong>. A confirmation receipt has been sent to <strong>{formState.email}</strong>. Our senior advisory desk is conducting conflict checks and will respond within 24 hours.
                 </p>
                 <div className="pt-2">
                   <button
